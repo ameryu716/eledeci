@@ -1,0 +1,565 @@
+@charset "utf-8";
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+body{
+  position: absolute;
+  width: 100%;
+  height: 650px;
+}
+
+#saigaikaku {
+  left: -10px;
+  top: -10px;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  height: 650px;
+  position: absolute;
+  width: 102%;
+}
+#gamename {
+  height: auto;
+  border: green 1px solid;
+  width: 450px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 40px;
+  position: absolute;
+  z-index: 1;
+}
+#logo {
+  float: left;
+  padding: 5px 5px 0 10px;
+  cursor: pointer;
+}
+#gamenametrue {
+  color: red;
+  padding: 15px 5px 15px 140px;
+  width: auto;
+}
+#gamenametrue h1 {
+  width: 280px;
+  margin-bottom: 0;
+  font-family: 'Lora', serif;
+  color: green;
+  padding-left: 10px;
+  padding-bottom: 3px;
+  border-bottom: red 1px ridge;
+}
+
+#allscore {
+  position: absolute;
+  left: 700px;
+  font-size: 25px;
+  padding: 40px;
+  font-family: cursive;
+}
+
+
+
+#bplaydisp {
+  width: 100%;
+  height: 95%;
+  position: absolute;
+}
+
+#option {
+  position: absolute;
+  right: 11%;
+  top: 42%;
+}
+
+input[type=checkbox]{
+  display: none;
+}
+input[type="checkbox"]:checked + label{
+  transition: 1s;
+  background-color: #ffffff;
+  color: darkturquoise;
+}
+.modelabel{
+  font-size: 30px;
+  margin: 10px;
+  border: solid 1px green;
+  border-color: forestgreen;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: lightgreen;
+  color: aliceblue;
+}
+
+
+#gamestartbtn {
+  position: absolute;
+  top: 55%;
+  right: 42%;
+  font-size: 64px;
+  background-color: coral;
+  color: snow;
+  border: 5px solid red;
+  box-shadow: 5px 10px 3px rgba(200,0,0,0.7);
+  z-index: 2;
+  cursor: pointer;
+}
+
+
+
+#gamestartbtn:hover {
+  box-shadow: -5px 7px 2px rgba(200,0,0,0.7);
+  transition: 1s;
+}
+
+#heximg {
+  display: none;
+  position: absolute;
+  top: 40%;
+  right: 30%;
+  z-index: 0;
+  animation-name: hexim;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  width: auto;
+}
+
+#greenhex{
+  display: none;
+  position: absolute;
+  top: 20%;
+  left: 25%;
+  z-index: 0;
+  animation-name: hexim2;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  width: auto;
+}
+@keyframes hexim {
+  0%{transform:rotateZ(0deg);}
+  50%{transform: rotateZ(180deg);}
+  100%{transform:rotateZ(360deg);}
+}
+@keyframes hexim2 {
+  0%{transform:rotateZ(0deg);}
+  50%{transform: rotateZ(180deg);}
+  100%{transform:rotateZ(360deg);}
+}
+
+#Score {
+  position: absolute;
+  top: 125px;
+  width: 100px;
+  height: 500px;
+}
+.scoreboardimg {
+  position: absolute;
+  z-index: 0;
+}
+#pcscore {
+  display: block;
+}
+#mobilescore {
+  display: none;
+}
+
+#scorerail {
+  position: absolute;
+  z-index: 1;
+  padding: 30px;
+  height: 440px;
+  width: 98px;
+  list-style: none;
+}
+#scorerail li {
+  margin: 0 4px;
+  float: left;
+  height: 44px;
+}
+
+#hyouka {
+  display: none;
+  width: 99%;
+  height: 800px;
+  background-color: rgba(255,255,255,0.8);
+  position: absolute;
+  z-index: 10;
+  cursor: pointer;
+}
+#hyoukaspa{
+  position: relative;
+  display: block;
+  text-align: center;
+  padding: 300px;
+  font-size: 80px;
+  font-family: serif;
+}
+
+
+
+
+
+
+
+
+
+.game-corner {
+  height: 450px;
+  width: 900px;
+  border: coral 2px solid;
+  background-image: url(https://lhaidelabo.com/wp-content/uploads/2020/05/tail.png);
+  display: none;
+  position: absolute;
+  top: 22%;
+  left: 16.5%;
+  z-index: 1;
+  font-family: 'Noto Serif JP', serif;
+}
+
+#g-mission {
+  width: 70%;
+  height: 70px;
+  margin: 2% auto;
+  background-color: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+#g-mission h2 {
+  margin-bottom: 0;
+  padding-top: 10px;
+}
+#missiontitle {
+  text-align: center;
+  font-size: 38px;
+}
+#g-answer {
+  width: 96%;
+  height: 300px;
+  margin: 2%;
+}
+.selecta {
+  position: relative;
+  width: 45%;
+  text-align: center;
+  padding: 100px 0;
+  font-size: 64px;
+  margin: 0 5px;
+  cursor: pointer;
+  z-index: 1;
+}
+#selectans-1 {
+  float: left;
+  background-color: rgba(255,0,0,0.95);
+  box-shadow: 4px 7px 3px rgba(255,0,0,0.7);
+  margin: 5px 10px;
+}
+#selectans-2 {
+  float: right;
+  background-color: rgba(0,0,255,0.95);
+  box-shadow: 4px 7px 3px rgba(0,0,255,0.7);
+  margin: 5px 10px;
+}
+.selecta:hover {
+  box-shadow: none;
+  transform: translate(3px,7px);
+  transition: 0.5s;
+}
+#selectans-1:not(:hover) {
+  box-shadow: 4px 7px 3px rgba(255,0,0,0.3);
+}
+#selectans-2:not(:hover) {
+  box-shadow: 4px 7px 3px rgba(0,0,255,0.3);
+}
+.clearop {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+}
+#okimg{
+  display: none;
+  position: absolute;
+  z-index: 2;
+  bottom: 140px;
+  left: 450px;
+}
+#ngbrn{
+  display: none;
+  position: absolute;
+  z-index: 2;
+  bottom: 150px;
+  left: 460px;
+}
+#gameobrn{
+  display: none;
+  position: absolute;
+  z-index: 6;
+  bottom: 50px;
+  left: 20%;
+  width: 800px;
+}
+#adsdiv {
+  display: none;
+}
+.mobileonly {
+  display: none;
+}
+
+@media screen and (max-width:600px) {
+  /*画面サイズが600px以下の場合に適用 */
+  .mobileonly {
+    display: block;
+  }
+  body{
+    margin: 0;
+    background-image: url(https://lhaidelabo.com/wp-content/themes/kibori_backboard/images/woodback.jpg);
+  }
+  #saigaikaku{
+    padding: 3% 1% 0;
+    width: 97.5%;
+    left: auto;
+    top: auto;
+    padding: 3% 0;
+    border: aliceblue 1px solid;
+    margin: 1%;
+    background-image: url("https://lhaidelabo.com/wp-content/themes/kibori_backboard/images/dscwood.png");
+    background-size: contain
+  }
+  #adsdiv {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    width: 320px;
+    height: 100px;
+    border: solid black 1px;
+  }
+  main {
+    margin: 0 2%;
+    padding: 10px 0;
+    border-top:rgba(0,255,30,0.2) solid 1px;
+  }
+  #pcscore {
+    display: none;
+  }
+  #mobilescore {
+    display: block;
+  }
+  #gamename{
+    height: auto;
+    width: 42vw;
+    position: relative;
+    margin: 5px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 20px;
+    background-color: #fff;
+  }
+  #logo {
+    float: left;
+    position: relative;
+  }
+  .logoimg {
+    width: 45px;
+    height: auto;
+  }
+  #gamenametrue {
+    padding: 0;
+    padding-top: 5px;
+    clear: right;
+  }
+  #debag {
+    display: none;
+  }
+  #gamenametrue h1 {
+    width: 150px;
+    padding-left: 10px;
+    font-size: 4.4vw;
+    border: none;
+    margin: 0;
+    line-height: 1.5;
+  }
+  #decisionenter {
+    padding-left: 20px;
+  }
+  #allscore {
+    position: absolute;
+    left: auto;
+    right: 7%;
+    top: 18%;
+    font-size: 4vw;
+    width: 40%;
+    float: right;
+    margin: 5px 0 0 0;
+    font-family: serif;
+    background-color: #fff;
+    padding: 3px;
+    border-radius: 10px;
+  }
+  #option {
+    position: relative;
+    right: 0;
+    top: 0;
+  }
+  .modelabel {
+    font-size: 4vw;
+    margin: 1%;
+    padding: 7px 3.2%;
+    float: left;
+  }
+  #gamestartbtn {
+    top: 55%;
+    right: auto;
+    left: 22%;
+    font-size: 40px;
+  }
+  .game-corner {
+    width: 88%;
+    height: auto;
+    padding-bottom: 15px;
+    position: relative;
+    margin: 0 6%;
+    top: auto;
+    left: auto;
+  }
+  #g-mission {
+    width: 85%;
+  }
+  #missiontitle{
+    font-size: 24px;
+  }
+  #g-answer {
+    height: auto;
+  }
+  .selecta {
+    width: 45%;
+    padding: 20px 0;
+    font-size: 25px;
+  }
+  #selectans-1,#selectans-2 {
+    margin: 5px;
+  }
+  #Score {
+    position: relative;
+    top: auto;
+    width: 330px;
+    height: 100px;
+    margin: 0 auto 10px;
+  }
+  #scorerail{
+    padding: 10px 11px;
+    height: 70px;
+    width: 310px;
+  }
+  #scorerail li{
+    margin: 0 3px;
+    height: 34px;
+  }
+  #scorerail li img {
+    width: 25px;
+  }
+  
+  
+  .clearop {
+    top: 300px;
+    left: 10%;
+  }
+  #gameobrn{
+    left: auto;
+    bottom: auto;
+    width: 300px;
+  }
+  #hyouka{
+    top: 0;
+  }
+  #hyoukaspa{
+    padding: 50vh 0;
+    font-size: 30px;
+  }
+  
+  .chavanarea{
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    height: 15%;
+  }
+  
+  
+  
+  #mametisikiarea {
+    font-family: "Kosugi Maru","serif";
+    width: 91vw;
+    height: 80px;
+    float: left;
+    padding: 3vw;
+    font-weight: 600;
+    border-radius: 10px;
+    display: none;
+  }
+  #mamesdiv{
+    border: none;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: 2s;
+    opacity: 0.5;
+    box-shadow: 5px 2px 10px lightgreen;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 10px;
+  }
+  #mametisikiarea span{
+    font-size: 5.5vw;
+    position: relative;
+    top: 30%;
+    border-bottom: 5px solid rgba(0,200,255,0.3);
+    font-family: "Nico Moji","monospace","serif","sans-serif";
+    left: 9%;
+    padding-bottom: 1px;
+    font-weight: 700;
+  }
+  .serifgreen {
+    background-image: url(https://lhaidelabo.com/wp-content/themes/kibori_backboard/images/seriflinegreen.png);
+    height: 120%;
+    width: 100%;
+  }
+  .serifwater {
+    background-image: url(https://lhaidelabo.com/wp-content/themes/kibori_backboard/images/seriflinewater.png);
+    height: 100%;
+    width: 100%;
+  }
+  .seriforange {
+    background-image: url(https://lhaidelabo.com/wp-content/themes/kibori_backboard/images/seriflineorange.png);
+    height: 100%;
+    width: 100%;
+  }
+  
+  
+  
+  
+  
+  
+  #prodactkunarea {
+    position: absolute;
+    right: 10px;
+    animation-name: prodactkun;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    animation-delay: 1s;
+    animation-timing-function: linear;
+    display: none;
+  }
+  
+  @keyframes prodactkun{
+    0%{right: -20%;}
+    50%{right: 50%;}
+    100%{right: 120%;}
+  }
+  
+  
+  
+  
+  
+}
