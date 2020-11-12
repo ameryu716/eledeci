@@ -33,14 +33,14 @@ var unlimitedcontinue = 0;  //50問以上で表示・続けるかどうか
 const hyouka = document.getElementById("hyouka");
 const gamecorner = document.getElementsByClassName("game-corner");
 const bplaydisp = document.getElementsByClassName("bplaydisp");//double-Elements-back.
-//var scoretex = document.getElementById("scorerail");
-
+const scorenode = document.getElementById("scorerail"); 
+const logonode = document.getElementById("logo");
 //1＝問題文
 //2＝第一選択肢
 //3＝第二選択肢
 //4＝正しい選択肢（数字）
 
-alert("Newver28!!");
+alert("Newver29!!");
 
 new FooterGear();
 
@@ -284,7 +284,6 @@ const hyoukalist = {
   h_gomten : ["馬鹿なの？（直球）","何故生きている！？","えぇ.....（困惑）","大丈夫ですか？（煽り）"],//正解率50%以下
   h_tukumogami : ["逆位相の神","貴殿こそ本物だ","七十二柱が一柱","賽の河原に就職"]//正解率0%
 }
-  
 
 const hyoukafase = function(){
   ratecorrect = 0;
@@ -353,6 +352,40 @@ const modechange = function(){
       }
 }
 
+const logoandend = function(){
+  alert("回答を中断します");
+  Fadeout(hyouka);//1000
+  Fadeout(gamecorner[0]);
+  totalsyutudai = totalsyutudai + kotaetakazu;
+  kotaetakazu = 0;
+  while(scorenode.firstChild){
+    scorenode.removeChild(scorenode.firstChild);
+  }
+  totalsei = totalsei + seikaisuu;
+  seikaisuu = 0;
+  totalhusei = totalhusei + huseikaisuu;
+  huseikaisuu = 0;
+  totalratec = totalsei/totalsyutudai;
+  totalratec = Math.round(totalratec*100);
+  Fadein(bplaydisp[0]);//2000
+  Fadein(bplaydisp[1]);//2000
+  document.getElementById("alsc1").innerText = "トータル正解："+totalsei+"/"+totalsyutudai;
+  document.getElementById("alsc2").innerText = "正解率："+totalratec+"%";
+}; //正解率出力+ホーム遷移
+
+logonode.onclick = ()=>{
+  if(threemodes===3){
+    alert("引き返すことは出来ないようだ......");
+  }else{
+    let logoconfu = window.confirm("回答を中断しますか？");//ホームorトライ選択
+    if(logoconfu){
+      logoandend();
+    } 
+  }
+};  //Logoリスタート
+
+
+
 
 
 window.onload = function(){ //Jquery始め
@@ -366,36 +399,6 @@ const optioncb = document.getElementsByClassName("optioncb");
         this.checked = true;
       }
   }
-
-const logoandend = function(){
-      alert("回答を中断します");
-      Fadeout(hyouka);//1000
-      Fadeout(gamecorner[0]);
-      totalsyutudai = totalsyutudai + kotaetakazu;
-      kotaetakazu = 0;
-      $('#scorerail').empty();
-      totalsei = totalsei + seikaisuu;
-      seikaisuu = 0;
-      totalhusei = totalhusei + huseikaisuu;
-      huseikaisuu = 0;
-      totalratec = totalsei/totalsyutudai;
-      totalratec = Math.round(totalratec*100);
-      Fadein(bplaydisp[0]);//2000
-      Fadein(bplaydisp[1]);//2000
-      document.getElementById("alsc1").innerText = "トータル正解："+totalsei+"/"+totalsyutudai;
-      document.getElementById("alsc2").innerText = "正解率："+totalratec+"%";
-}; //正解率出力+ホーム遷移
-  
-$('#logo').click(function(){
-  if(threemodes===3){
-    alert("引き返すことは出来ないようだ......");
-  }else{
-    let logoconfu = window.confirm("回答を中断しますか？");//ホームorトライ選択
-    if(logoconfu){
-      logoandend();
-    } 
-  }
-});  //Logoリスタート
   
 $('#gamestartbtn').hover(
   function(){
@@ -568,9 +571,6 @@ $('#hyouka').click(function(){
       }
       resetsur();
       htchange();
-      
-      
-      
         
       switch(threemodes){
         case 1:
