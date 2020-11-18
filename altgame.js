@@ -33,18 +33,19 @@ var unlimitedcontinue = 0;  //50問以上で表示・続けるかどうか
 const hyouka = document.getElementById("hyouka");
 const gamecorner = document.getElementsByClassName("game-corner");
 const bplaydisp = document.getElementsByClassName("bplaydisp");//double-Elements-back.
+const clearop = document.getElementsByClassName("clearop");
 const scorenode = document.getElementById("scorerail"); 
 const logonode = document.getElementById("logo");
 const gamestartbtn = document.getElementById("gamestartbtn");
 const selectans1 = document.getElementById("selectans-1");
-const selectans2 = document.getElementById("selectans-2"); 
+const selectans2 = document.getElementById("selectans-2");
 
 //1＝問題文
 //2＝第一選択肢
 //3＝第二選択肢
 //4＝正しい選択肢（数字）
 
-alert("Newver37!!");
+alert("JQuery撲滅！！Newver45!!");
 
 new FooterGear();
 
@@ -385,11 +386,6 @@ logonode.onclick = ()=>{
 };  //Logoリスタート
 
 
-
-
-
-window.onload = function(){ //Jquery始め
-
 const optioncb = document.getElementsByClassName("optioncb");
   for(let i=0;i<optioncb.length;i++){
       optioncb[i].onclick = function(){
@@ -399,17 +395,13 @@ const optioncb = document.getElementsByClassName("optioncb");
         this.checked = true;
       }
   }
-  
-$('#gamestartbtn').hover(
-  function(){
-    $('#heximg').fadeIn(500);
-    $('#greenhex').fadeIn(700);
-},
-  function() {
-    $('#heximg').fadeOut(500);
-    $('#greenhex').fadeOut(500);
-  }
-);  //Start前装飾
+
+gamestartbtn.addEventListener("mouseenter",()=>{
+  DelayFadein(0.5,document.getElementById("heximg"),document.getElementById("greenhex"));
+})
+gamestartbtn.addEventListener("mouseleave",()=>{
+  DelayFadeout(0.5,document.getElementById("heximg"),document.getElementById("greenhex"));
+})
 
 //正解エフェクト不正解エフェクト
 const okimg = document.getElementById("okimg");//〇
@@ -417,7 +409,7 @@ const okaud = document.getElementById("okaud");//ピンポーン
 const gameobrn = document.getElementById("gameobrn");//デレレーンゲームオーバー
 const ngbrn = document.getElementById("ngbrn");//バーン！！動画
 const audbn = document.getElementById("audbn");//バーン！！音声
-const clearop = document.getElementsByClassName("clearop");
+const scorerail = document.getElementById("scorerail");
 
 const seigohantei = function(){
   if(aju==axy){ //正解
@@ -429,7 +421,9 @@ const seigohantei = function(){
       }//正解音をまだ再生しているなら
 
       okaud.play();
-      $("#scorerail").append("<li><img src='https://lhaidelabo.com/wp-content/uploads/2020/05/minimaru.png'></li>");
+      let railchild = document.createElement("li");
+      railchild.innerHTML = "<img src='https://lhaidelabo.com/wp-content/uploads/2020/05/minimaru.png'>";
+      scorerail.appendChild(railchild);
       seikaisuu = seikaisuu + 1;
       kotaetakazu = kotaetakazu + 1;
 
@@ -456,8 +450,9 @@ const seigohantei = function(){
 
         ngbrn.play();
         audbn.play();
-        
-        $("#scorerail").append("<li><img src='https://lhaidelabo.com/wp-content/uploads/2020/05/minibatu.png'></li>");
+        let railchild = document.createElement("li");
+        railchild.innerHTML = "<img src='https://lhaidelabo.com/wp-content/uploads/2020/05/minibatu.png'>";
+        scorerail.appendChild(railchild);
         huseikaisuu = huseikaisuu + 1;
         kotaetakazu = kotaetakazu + 1;
       }
@@ -480,7 +475,8 @@ $('#hyouka').click(function(){
       Fadeout(gamecorner[0]);
       totalsyutudai = totalsyutudai + kotaetakazu;
       kotaetakazu = 0;
-      $('#scorerail').empty();
+      scorerail.innerHTML = "";
+      //$('#scorerail').empty();
       totalsei = totalsei + seikaisuu;
       seikaisuu = 0;
       totalhusei = totalhusei + huseikaisuu;
@@ -544,59 +540,6 @@ selectans1.onclick = function(){
   } clickflag = true;
 }
 
-
-    // $('#selectans-1').click(function(){
-    //   if(clickflag){
-    //     clickflag = false;
-    //   axy=1;
-    //   Fadeout(gamecorner[0]);
-    //   seigohantei();
-    //   if(threemodes===3&&optionlimit){
-    //   }else{
-    //     DelayFadeout(1,okimg,ngbrn,clearop[0]);
-    //   }
-    //   resetsur();
-    //   htchange();
-
-    //   switch(threemodes){
-    //     case 1:
-    //       if(kotaetakazu>49){
-    //         if(unlimitedcontinue){
-    //           var logoconfu2 = window.confirm("まだ挑戦しますか？");
-    //           if(logoconfu2){
-    //             unlimitedcontinue = false;
-    //           }else{
-    //             hyoukafase();
-    //           }
-    //         }else{
-    //           if(kotaetakazu>99){
-    //             alert("100問回答達成です！おめでとうございます！！");
-    //             hyoukafase();
-    //           }
-    //         }
-            
-    //       }
-    //       break;
-    //     case 2:
-    //       if(kotaetakazu>19){
-    //         hyoukafase();
-    //       }
-    //       break;
-    //     case 3:
-    //       if(optionlimit){
-    //         //3秒待機
-    //         setTimeout(()=>{
-    //           hyoukafase();
-    //         },7000);
-    //       }
-    //   }  
-    //   Fadein(gamecorner[0]);
-    //   } else {
-    //     return false;
-    //   } clickflag = true;
-    //   //
-    // });
-
     
 selectans2.onclick = function(){
   if(clickflag){
@@ -651,60 +594,3 @@ selectans2.onclick = function(){
   } 
   clickflag = true;
 }
-
-    // $('#selectans-2').click(function(){
-    //   if(clickflag){
-    //     clickflag = false;
-    //   axy=2;
-    //   Fadeout(gamecorner[0]);//500
-    //   seigohantei();//正誤判定
-      
-    //   if(threemodes===3&&optionlimit){
-      
-    //   }else{
-    //     DelayFadeout(1,okimg,ngbrn,clearop[0]);
-    //   }
-    //   resetsur();
-    //   htchange();
-        
-    //   switch(threemodes){
-    //     case 1:
-    //       if(kotaetakazu>49){
-    //         if(unlimitedcontinue){
-    //           var logoconfu2 = window.confirm("まだ挑戦しますか？");
-    //           if(logoconfu2){
-    //             unlimitedcontinue = false;
-    //           }else{
-    //             hyoukafase();
-    //           }
-    //         }else{
-    //           if(kotaetakazu>99){
-    //             alert("100問回答達成です！おめでとうございます！！");
-    //             hyoukafase();
-    //           }
-    //         }
-            
-    //       }
-    //       break;
-    //     case 2:
-    //       if(kotaetakazu>19){
-    //         hyoukafase();
-    //       }
-    //       break;
-    //     case 3:
-    //       if(optionlimit){
-    //         //3秒待機
-    //         setTimeout(()=>{
-    //           hyoukafase();
-    //         },7000);   
-    //       }
-    //     }
-    //   DelayFadein(1,gamecorner[0]);
-    //   } else {
-    //     return false;
-    //   } 
-    //   clickflag = true;
-    //   //
-    // });
-
-};//Jquery終わり

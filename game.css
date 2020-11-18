@@ -211,7 +211,7 @@ input[type="checkbox"]:checked + label{
   height: 450px;
   width: 900px;
   border: coral 2px solid;
-  background-image: url(https://lhaidelabo.com/wp-content/uploads/2020/05/tail.png);
+  background-image: url(../images/tail.png);
   display: none;
   position: absolute;
   top: 22%;
@@ -317,7 +317,7 @@ input[type="checkbox"]:checked + label{
   }
   body{
     margin: 0;
-    background-image: url(https://lhaidelabo.com/wp-content/themes/kibori_backboard/images/woodback.jpg);
+    background-image: url(../images/woodback.jpg);
   }
   #saigaikaku{
     padding: 3% 1% 0;
@@ -327,7 +327,7 @@ input[type="checkbox"]:checked + label{
     padding: 3% 0;
     border: aliceblue 1px solid;
     margin: 1%;
-    background-image: url("https://lhaidelabo.com/wp-content/themes/kibori_backboard/images/dscwood.png");
+    background-image: url("../images/dscwood.png");
     background-size: contain
   }
   #adsdiv {
@@ -521,17 +521,17 @@ input[type="checkbox"]:checked + label{
     font-weight: 700;
   }
   .serifgreen {
-    background-image: url(https://lhaidelabo.com/wp-content/themes/kibori_backboard/images/seriflinegreen.png);
+    background-image: url(../images/seriflinegreen.png);
     height: 120%;
     width: 100%;
   }
   .serifwater {
-    background-image: url(https://lhaidelabo.com/wp-content/themes/kibori_backboard/images/seriflinewater.png);
+    background-image: url(../images/seriflinewater.png);
     height: 100%;
     width: 100%;
   }
   .seriforange {
-    background-image: url(https://lhaidelabo.com/wp-content/themes/kibori_backboard/images/seriflineorange.png);
+    background-image: url(../images/seriflineorange.png);
     height: 100%;
     width: 100%;
   }

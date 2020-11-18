@@ -3,6 +3,7 @@ export const Fadeout = function(elemen){
 }
 export const Fadein = function(elemen){
     elemen.style.display = "block";
+    elemen.style.opacity = "1";
 }
 
 export const MulchFadein = (...palam)=>{
