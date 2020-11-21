@@ -1,14 +1,18 @@
 import {Fadein,Fadeout,MulchFadein,MulchFadeout,DelayFadein,DelayFadeout} from './Module-Fade';
 import {FooterGear} from './Module-FooterEngine';
 
-var cen = 0;  //問題文
-var aju = 0;  //正解
-var axy = 0;  //選んだ答え
-var afi = 0;  //1番
-var ase = 0;  //2番
+const Gamestate = {
+  mode: 1,//1=unlimited//2=20limited//3=undefeated
+  question: "",//問題文
+  rightnum: 0,//正解の番号
+  selectnum: 0,//選んだ番号
+  choices1: "",//問題選択肢１
+  choices2: "",//問題選択肢2
+  mistaken: false,//undefeatedで間違えたかどうか
+};
 
-var mondaigime = 0; //ランダム問題決め
-var clickflag = true;　//多重処理防止
+let clickflag = true;　//多重処理防止
+
 var seikaisuu = 0;　//一次正解数
 var huseikaisuu = 0;　//一次不正解数
 var kotaetakazu = 0;　//一次出題数
@@ -18,12 +22,7 @@ var totalhusei = 0;　//総合不正解数
 var totalsyutudai = 0;　//総合出題数
 var totalratec = 0;
 
-var optionlimit = 0;  //間違えました変数・undefeated用
 var modecheck = 0;  //モード変更チェックボックスの状態
-var threemodes =0;  //モード＝？
-  //1=unlimited
-  //2=20limited
-  //3=undefeated
 var randomhyouka = 0;
 var sikenyo = 0;
 
@@ -45,7 +44,7 @@ const selectans2 = document.getElementById("selectans-2");
 //3＝第二選択肢
 //4＝正しい選択肢（数字）
 
-alert("JQuery撲滅！！Newver45!!");
+alert("JQueryは衰退しました。Newver48!!");
 
 new FooterGear();
 
@@ -314,42 +313,34 @@ const hyoukafase = function(){
 };
 
 const resetsur = function(){
-
- cen = 0;  //問題文
- aju = 0;  //正解
- axy = 0;  //選んだ答え
- afi = 0;  //1番
- ase = 0;  //2番
-
- mondaigime = Math.floor(Math.random()*227)+1;//乱数から問セッティング
- cen = Erabu[mondaigime][0];
- aju = Erabu[mondaigime][3];
- afi = Erabu[mondaigime][1];
- ase = Erabu[mondaigime][2];
+ let mondaigime = Math.floor(Math.random()*227)+1;//乱数から問セッティング
+ Gamestate.question = Erabu[mondaigime][0];
+ Gamestate.rightnum = Erabu[mondaigime][3];
+ Gamestate.choices1 = Erabu[mondaigime][1];
+ Gamestate.choices2 = Erabu[mondaigime][2];
 }
 
 const htchange = function(){ //問題文変更
-  document.getElementById("missiontitle").innerHTML = cen;
-  document.getElementById("selectans-1").innerHTML = afi;
-  document.getElementById("selectans-2").innerHTML = ase;
+  document.getElementById("missiontitle").innerHTML = Gamestate.question;
+  document.getElementById("selectans-1").innerHTML = Gamestate.choices1;
+  document.getElementById("selectans-2").innerHTML = Gamestate.choices2;
 }
 
 const modechange = function(){
   modecheck = document.getElementsByName("limitchange");
-  threemodes = 0;
-  optionlimit = false;
+  Gamestate.mistaken = false;
   unlimitedcontinue = true;
     
       if(modecheck[0].checked){
-        threemodes = 1;
+        Gamestate.mode = 1;
         alert("モード「アンリミテッド」");
       }
       else if(modecheck[1].checked){
-        threemodes = 2;
+        Gamestate.mode = 2;
         alert("モード「20リミット」");
       }
       else if(modecheck[2].checked){
-        threemodes = 3;
+        Gamestate.mode = 3;
         alert("モード「無敗の聖剣」");
       }
 }
@@ -375,7 +366,7 @@ const logoandend = function(){
 }; //正解率出力+ホーム遷移
 
 logonode.onclick = ()=>{
-  if(threemodes===3){
+  if(Gamestate.mode===3){
     alert("引き返すことは出来ないようだ......");
   }else{
     let logoconfu = window.confirm("回答を中断しますか？");//ホームorトライ選択
@@ -412,7 +403,7 @@ const audbn = document.getElementById("audbn");//バーン！！音声
 const scorerail = document.getElementById("scorerail");
 
 const seigohantei = function(){
-  if(aju==axy){ //正解
+  if(Gamestate.rightnum==Gamestate.selectnum){ //正解
       Fadein(clearop[0]);
       Fadein(okimg);//500
       if(!okaud.paused){
@@ -424,16 +415,16 @@ const seigohantei = function(){
       let railchild = document.createElement("li");
       railchild.innerHTML = "<img src='https://lhaidelabo.com/wp-content/uploads/2020/05/minimaru.png'>";
       scorerail.appendChild(railchild);
-      seikaisuu = seikaisuu + 1;
-      kotaetakazu = kotaetakazu + 1;
+      seikaisuu++;
+      kotaetakazu++;
 
     }else{  //不正解
       //無敗モード時gameover挿入
-      if(threemodes===3){
+      if(Gamestate.mode===3){
         Fadein(clearop[0]);
         DelayFadein(1,gameobrn);
         gameobrn.play();
-        optionlimit = true;
+        Gamestate.mistaken = true;
         huseikaisuu = huseikaisuu + 1;
         kotaetakazu = kotaetakazu + 1;
       }else{
@@ -467,46 +458,45 @@ gamestartbtn.addEventListener("click",()=>{
   Fadein(gamecorner[0]);
   //問題設定宣言
 })
-  
-$('#hyouka').click(function(){
-  
-    if(gameobrn.paused){
-      DelayFadeout(1,gameobrn,clearop[0],hyouka);
-      Fadeout(gamecorner[0]);
-      totalsyutudai = totalsyutudai + kotaetakazu;
-      kotaetakazu = 0;
-      scorerail.innerHTML = "";
-      //$('#scorerail').empty();
-      totalsei = totalsei + seikaisuu;
-      seikaisuu = 0;
-      totalhusei = totalhusei + huseikaisuu;
-      huseikaisuu = 0;
-      totalratec = totalsei/totalsyutudai;
-      totalratec = Math.round(totalratec*100);
-      DelayFadein(2,bplaydisp[0],bplaydisp[1]);
-      document.getElementById("alsc1").innerText = "トータル正解："+totalsei+"/"+totalsyutudai;
-      document.getElementById("alsc2").innerText = "正解率："+totalratec+"%";
-    }
-})
+
+hyouka.onclick = ()=>{
+  if(gameobrn.paused){
+    DelayFadeout(1,gameobrn,clearop[0],hyouka);
+    Fadeout(gamecorner[0]);
+    totalsyutudai = totalsyutudai + kotaetakazu;
+    kotaetakazu = 0;
+    scorerail.innerHTML = "";
+    //$('#scorerail').empty();
+    totalsei = totalsei + seikaisuu;
+    seikaisuu = 0;
+    totalhusei = totalhusei + huseikaisuu;
+    huseikaisuu = 0;
+    totalratec = totalsei/totalsyutudai;
+    totalratec = Math.round(totalratec*100);
+    DelayFadein(2,bplaydisp[0],bplaydisp[1]);
+    document.getElementById("alsc1").innerText = "トータル正解："+totalsei+"/"+totalsyutudai;
+    document.getElementById("alsc2").innerText = "正解率："+totalratec+"%";
+  }
+}
 
 selectans1.onclick = function(){
   if(clickflag){
     clickflag = false;
-  axy=1;
+  Gamestate.selectnum = 1;
   Fadeout(gamecorner[0]);
   seigohantei();
-  if(threemodes===3&&optionlimit){
+  if(Gamestate.mode===3&&Gamestate.mistaken){
   }else{
     DelayFadeout(1,okimg,ngbrn,clearop[0]);
   }
   resetsur();
   htchange();
 
-  switch(threemodes){
+  switch(Gamestate.mode){
     case 1:
       if(kotaetakazu>49){
         if(unlimitedcontinue){
-          var logoconfu2 = window.confirm("まだ挑戦しますか？");
+          let logoconfu2 = window.confirm("まだ挑戦しますか？");
           if(logoconfu2){
             unlimitedcontinue = false;
           }else{
@@ -527,7 +517,7 @@ selectans1.onclick = function(){
       }
       break;
     case 3:
-      if(optionlimit){
+      if(Gamestate.mistaken){
         //3秒待機
         setTimeout(()=>{
           hyoukafase();
@@ -544,11 +534,11 @@ selectans1.onclick = function(){
 selectans2.onclick = function(){
   if(clickflag){
     clickflag = false;
-  axy=2;
+  Gamestate.selectnum =2; //2番を選びました
   Fadeout(gamecorner[0]);//500
   seigohantei();//正誤判定
   
-  if(threemodes===3&&optionlimit){
+  if(Gamestate.mode===3&&Gamestate.mistaken){
   
   }else{
     DelayFadeout(1,okimg,ngbrn,clearop[0]);
@@ -556,7 +546,7 @@ selectans2.onclick = function(){
   resetsur();
   htchange();
     
-  switch(threemodes){
+  switch(Gamestate.mode){
     case 1:
       if(kotaetakazu>49){
         if(unlimitedcontinue){
@@ -581,7 +571,7 @@ selectans2.onclick = function(){
       }
       break;
     case 3:
-      if(optionlimit){
+      if(Gamestate.mistaken){
         //3秒待機
         setTimeout(()=>{
           hyoukafase();
