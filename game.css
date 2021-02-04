@@ -311,31 +311,36 @@ input[type="checkbox"]:checked + label{
   .mobileonly {
     display: block;
   }
-  body{
+  body {
     margin: 0;
     background-image: url(../images/woodback.jpg);
-  }
-  #saigaikaku{
+    height: 100vh;
+    box-sizing: border-box;
+}
+  #saigaikaku {
     padding: 3% 1% 0;
     width: 97.5%;
     left: auto;
     top: auto;
-    padding: 3% 0;
+    padding: 0;
     border: aliceblue 1px solid;
     margin: 1%;
-    background-image: url("../images/dscwood.png");
-    background-size: contain
-  }
+    background-image: url(../images/dscwood.png);
+    background-size: contain;
+    box-sizing: border-box;
+    height: 100vh;
+}
   #adsdiv {
     display: block;
-    position: relative;
+    position: fixed;
     margin: 0 auto;
     width: 320px;
     height: 100px;
     border: solid black 1px;
-  }
+    bottom: 40px;
+    left: 7%;
+}
   main {
-    margin: 0 2%;
     padding: 10px 0;
     border-top:rgba(0,255,30,0.2) solid 1px;
   }
@@ -384,17 +389,16 @@ input[type="checkbox"]:checked + label{
   #allscore {
     position: absolute;
     left: auto;
-    right: 7%;
-    top: 18%;
+    right: 0;
+    top: 0;
     font-size: 4vw;
     width: 40%;
-
     margin: 5px 0 0 0;
     font-family: serif;
     background-color: #fff;
     padding: 3px;
     border-radius: 10px;
-  }
+}
   #option {
     position: relative;
     right: 0;
@@ -414,16 +418,17 @@ input[type="checkbox"]:checked + label{
     font-size: 40px;
   }
   .game-corner {
-    width: 88%;
+    width: 96%;
     height: auto;
-    padding-bottom: 15px;
-    position: relative;
-    margin: 0 6%;
-    top: auto;
-    left: auto;
-  }
+    padding-bottom: 30px;
+    position: absolute;
+    margin: 0 2%;
+    top: 44%;
+    left: 0;
+}
   #g-mission {
     width: 85%;
+    height: 80px;
   }
   #missiontitle{
     font-size: 24px;
@@ -442,7 +447,7 @@ input[type="checkbox"]:checked + label{
   #Score {
     position: relative;
     top: auto;
-    width: 350px;
+    width: 104vw;
     height: 130px;
     margin: 0 auto 10px;
   }
@@ -450,13 +455,13 @@ input[type="checkbox"]:checked + label{
     padding: 5px;
     height: auto;
     width: auto;
-    margin: 0 0 0 15px;
+    margin: 0;
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
-}
+  }
   #scorerail li{
-    margin: 0 3px;
+    margin: 0 8px;
     height: 20px;
     font-size: 3vw;
   }
