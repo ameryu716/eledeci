@@ -70,21 +70,21 @@ const Gamestate = {
 
 let clickflag = true;　//多重処理防止
 
-var seikaisuu = 0;　//一次正解数
-var huseikaisuu = 0;　//一次不正解数
-var kotaetakazu = 0;　//一次出題数
+let seikaisuu = 0;　//一次正解数
+let huseikaisuu = 0;　//一次不正解数
+let kotaetakazu = 0;　//一次出題数
 
-var totalsei = 0;　//総合正解数
-var totalhusei = 0;　//総合不正解数
-var totalsyutudai = 0;　//総合出題数
-var totalratec = 0;
+let totalsei = 0;　//総合正解数
+let totalhusei = 0;　//総合不正解数
+let totalsyutudai = 0;　//総合出題数
+let totalratec = 0;
 
-var modecheck = 0;  //モード変更チェックボックスの状態
-var randomhyouka = 0;
-var sikenyo = 0;
+let modecheck = 0;  //モード変更チェックボックスの状態
+let randomhyouka = 0;
+let sikenyo = 0;
 
-var ratecorrect = 0;  //正解率
-var unlimitedcontinue = 0;  //50問以上で表示・続けるかどうか
+let ratecorrect = 0;  //正解率
+let unlimitedcontinue = 0;  //50問以上で表示・続けるかどうか
 
 
 
@@ -97,15 +97,20 @@ const bplaydisp = document.getElementsByClassName("bplaydisp");//double-Elements
 const clearop = document.getElementsByClassName("clearop");
 const scorenode = document.getElementById("scorerail"); 
 const gamestartbtn = document.getElementById("gamestartbtn");
-const selectans1 = document.getElementById("selectans-1");
-const selectans2 = document.getElementById("selectans-2");
+const missiontitle = document.getElementById("missiontitle");//問題文elements
+const selectans1 = document.getElementById("selectans-1");//選択肢1elements
+const selectans2 = document.getElementById("selectans-2");//選択肢2elements
+const backbtn = document.getElementById("back");
+
+
+
+const alscore1 = document.getElementById("alsc1");
+const alscore2 = document.getElementById("alsc2");
 
 //1＝問題文
 //2＝第一選択肢
 //3＝第二選択肢
-//4＝正しい選択肢（数字）
-
-// alert("JQueryは衰退しました。Newver48!!");
+//4＝正しい選択肢（数字
 
 // new FooterGear();
 
@@ -349,8 +354,6 @@ const hyoukalist = {
   h_gomten : ["馬鹿なの？（直球）","何故生きている！？","えぇ.....（困惑）","大丈夫ですか？（煽り）"],//正解率50%以下
   h_tukumogami : ["逆位相の神","貴殿こそ本物だ","七十二柱が一柱","賽の河原に就職"]//正解率0%
 }
-
-
   
 const hyoukafase = function(){
   ratecorrect = 0;
@@ -384,60 +387,59 @@ const resetsur = function(){
 }
 
 const htchange = function(){ //問題文変更
-  document.getElementById("missiontitle").innerHTML = Gamestate.question;
-  document.getElementById("selectans-1").innerHTML = Gamestate.choices1;
-  document.getElementById("selectans-2").innerHTML = Gamestate.choices2;
+  missiontitle.innerText = Gamestate.question;
+  selectans1.innerText = Gamestate.choices1;
+  selectans2.innerText = Gamestate.choices2;
 }
 
 const modechange = function(){
-  modecheck = document.getElementsByName("limitchange");
-  Gamestate.mistaken = false;
-  unlimitedcontinue = true;
-    
-      if(modecheck[0].checked){
-        Gamestate.mode = 1;
-        alert("モード「アンリミテッド」");
-      }
-      else if(modecheck[1].checked){
-        Gamestate.mode = 2;
-        alert("モード「20リミット」");
-      }
-      else if(modecheck[2].checked){
-        Gamestate.mode = 3;
-        alert("モード「無敗の聖剣」");
-      }
+    modecheck = document.getElementsByName("limitchange");
+    Gamestate.mistaken = false;
+    unlimitedcontinue = true;
+    if(modecheck[0].checked){
+      Gamestate.mode = 1;
+      alert("モード「アンリミテッド」");
+    }
+    else if(modecheck[1].checked){
+      Gamestate.mode = 2;
+      alert("モード「20リミット」");
+    }
+    else if(modecheck[2].checked){
+      Gamestate.mode = 3;
+      alert("モード「無敗の聖剣」");
+    }
 }
 
 const logoandend = function(){
-  alert("回答を中断します");
-  DelayFadeout(1,hyouka);
-  Fadeout(gamecorner[0]);
-  totalsyutudai = totalsyutudai + kotaetakazu;
-  kotaetakazu = 0;
-  while(scorenode.firstChild){
-    scorenode.removeChild(scorenode.firstChild);
-  }
-  totalsei = totalsei + seikaisuu;
-  seikaisuu = 0;
-  totalhusei = totalhusei + huseikaisuu;
-  huseikaisuu = 0;
-  totalratec = totalsei/totalsyutudai;
-  totalratec = Math.round(totalratec*100);
-  DelayFadein(2,bplaydisp[0],bplaydisp[1]);
-  document.getElementById("alsc1").innerText = "トータル正解："+totalsei+"/"+totalsyutudai;
-  document.getElementById("alsc2").innerText = "正解率："+totalratec+"%";
+    alert("回答を中断します");
+    DelayFadeout(1,hyouka);
+    Fadeout(gamecorner[0]);
+    totalsyutudai = totalsyutudai + kotaetakazu;
+    kotaetakazu = 0;
+    while(scorenode.firstChild){
+      scorenode.removeChild(scorenode.firstChild);
+    }
+    totalsei = totalsei + seikaisuu;
+    seikaisuu = 0;
+    totalhusei = totalhusei + huseikaisuu;
+    huseikaisuu = 0;
+    totalratec = totalsei/totalsyutudai;
+    totalratec = Math.round(totalratec*100);
+    DelayFadein(2,bplaydisp[0],bplaydisp[1]);
+    alscore1.innerText = "トータル正解："+totalsei+"/"+totalsyutudai;
+    alscore2.innerText = "正解率："+totalratec+"%";
 }; //正解率出力+ホーム遷移
 
-// logonode.onclick = ()=>{
-//   if(Gamestate.mode===3){
-//     alert("引き返すことは出来ないようだ......");
-//   }else{
-//     let logoconfu = window.confirm("回答を中断しますか？");//ホームorトライ選択
-//     if(logoconfu){
-//       logoandend();
-//     } 
-//   }
-// };  //Logoリスタート
+backbtn.onclick = ()=>{
+  if(Gamestate.mode===3){
+    alert("引き返すことは出来ないようだ......");
+  }else{
+    let logoconfu = window.confirm("回答を中断しますか？");//ホームorトライ選択
+    if(logoconfu){
+      logoandend();
+    } 
+  }
+};  //Logoリスタート
 
 
 const optioncb = document.getElementsByClassName("optioncb");
@@ -463,7 +465,7 @@ const okaud = document.getElementById("okaud");//ピンポーン
 const gameobrn = document.getElementById("gameobrn");//デレレーンゲームオーバー
 const ngbrn = document.getElementById("ngbrn");//バーン！！動画
 const audbn = document.getElementById("audbn");//バーン！！音声
-const scorerail = document.getElementById("scorerail");
+const scorerail = document.getElementById("scorerail");//スコア表示用レール
 
 const seigohantei = function(){
   if(Gamestate.rightnum==Gamestate.selectnum){ //正解
@@ -531,7 +533,6 @@ hyouka.onclick = ()=>{
     totalsyutudai = totalsyutudai + kotaetakazu;
     kotaetakazu = 0;
     scorerail.innerHTML = "";
-    //$('#scorerail').empty();
     totalsei = totalsei + seikaisuu;
     seikaisuu = 0;
     totalhusei = totalhusei + huseikaisuu;
@@ -539,8 +540,8 @@ hyouka.onclick = ()=>{
     totalratec = totalsei/totalsyutudai;
     totalratec = Math.round(totalratec*100);
     DelayFadein(2,bplaydisp[0],bplaydisp[1]);
-    document.getElementById("alsc1").innerText = "トータル正解："+totalsei+"/"+totalsyutudai;
-    document.getElementById("alsc2").innerText = "正解率："+totalratec+"%";
+    alscore1.innerText = "トータル正解："+totalsei+"/"+totalsyutudai;
+    alscore2.innerText = "正解率："+totalratec+"%";
   }
 }
 
