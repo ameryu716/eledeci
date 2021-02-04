@@ -1,5 +1,62 @@
-import {Fadein,Fadeout,MulchFadein,MulchFadeout,DelayFadein,DelayFadeout} from './Module-Fade';
-import {FooterGear} from './Module-FooterEngine';
+const Fadeout = function(elemen){
+  elemen.style.display = "none";
+}
+const Fadein = function(elemen){
+  elemen.style.display = "block";
+  elemen.style.opacity = "1";
+}
+
+const MulchFadein = (...palam)=>{
+  for(let i=0;i<palam.length;i++){
+      palam[i].style.display = "block";
+  }
+  console.log(palam);
+}
+const MulchFadeout = (...palam)=>{
+  for(let i=0;i<palam.length;i++){
+      palam[i].style.display = "none";
+  }
+  console.log(palam);
+}
+
+const DelayFadein = (delay,...node)=>{
+  if(delay<10){
+      for(let i=0;i<node.length;i++){
+          node[i].style.display = "block";
+          node[i].style.transition = 0;
+          node[i].style.opacity = "0";
+          node[i].style.transition = delay+"s";
+          setTimeout(()=>{
+              node[i].style.opacity = "1";
+          },100)
+      }
+  }else{
+      console.error("フェード秒数が長すぎます");
+  }
+}//※フェード秒数は10秒以内です
+
+const DelayFadeout = (delay,...node)=>{
+  if(delay<10){
+      for(let i=0;i<node.length;i++){
+          node[i].style.transition = 0;
+          node[i].style.opacity = "1";
+          node[i].style.transition = delay+"s";
+          node[i].style.opacity = "0";
+          setTimeout(()=>{
+              node[i].style.display = "none";
+          },delay*900)
+      }
+  }else{
+      console.error("フェード秒数が長すぎます");
+  }
+}//※フェード秒数は10秒以内です
+
+
+
+
+
+// import {Fadein,Fadeout,MulchFadein,MulchFadeout,DelayFadein,DelayFadeout} from './Module-Fade';
+// import {FooterGear} from './Module-FooterEngine';
 
 const Gamestate = {
   mode: 1,//1=unlimited//2=20limited//3=undefeated
@@ -29,12 +86,16 @@ var sikenyo = 0;
 var ratecorrect = 0;  //正解率
 var unlimitedcontinue = 0;  //50問以上で表示・続けるかどうか
 
+
+
+window.addEventListener("load",()=>{
+
+
 const hyouka = document.getElementById("hyouka");
 const gamecorner = document.getElementsByClassName("game-corner");
 const bplaydisp = document.getElementsByClassName("bplaydisp");//double-Elements-back.
 const clearop = document.getElementsByClassName("clearop");
 const scorenode = document.getElementById("scorerail"); 
-const logonode = document.getElementById("logo");
 const gamestartbtn = document.getElementById("gamestartbtn");
 const selectans1 = document.getElementById("selectans-1");
 const selectans2 = document.getElementById("selectans-2");
@@ -44,9 +105,9 @@ const selectans2 = document.getElementById("selectans-2");
 //3＝第二選択肢
 //4＝正しい選択肢（数字）
 
-alert("JQueryは衰退しました。Newver48!!");
+// alert("JQueryは衰退しました。Newver48!!");
 
-new FooterGear();
+// new FooterGear();
 
 
 const Erabu = [
@@ -289,6 +350,8 @@ const hyoukalist = {
   h_tukumogami : ["逆位相の神","貴殿こそ本物だ","七十二柱が一柱","賽の河原に就職"]//正解率0%
 }
 
+
+  
 const hyoukafase = function(){
   ratecorrect = 0;
   randomhyouka = Math.floor(Math.random()*4);
@@ -365,16 +428,16 @@ const logoandend = function(){
   document.getElementById("alsc2").innerText = "正解率："+totalratec+"%";
 }; //正解率出力+ホーム遷移
 
-logonode.onclick = ()=>{
-  if(Gamestate.mode===3){
-    alert("引き返すことは出来ないようだ......");
-  }else{
-    let logoconfu = window.confirm("回答を中断しますか？");//ホームorトライ選択
-    if(logoconfu){
-      logoandend();
-    } 
-  }
-};  //Logoリスタート
+// logonode.onclick = ()=>{
+//   if(Gamestate.mode===3){
+//     alert("引き返すことは出来ないようだ......");
+//   }else{
+//     let logoconfu = window.confirm("回答を中断しますか？");//ホームorトライ選択
+//     if(logoconfu){
+//       logoandend();
+//     } 
+//   }
+// };  //Logoリスタート
 
 
 const optioncb = document.getElementsByClassName("optioncb");
@@ -413,7 +476,8 @@ const seigohantei = function(){
 
       okaud.play();
       let railchild = document.createElement("li");
-      railchild.innerHTML = "<img src='https://lhaidelabo.com/wp-content/uploads/2020/05/minimaru.png'>";
+      railchild.classList.add("ok");
+      railchild.innerText = "正解！！";
       scorerail.appendChild(railchild);
       seikaisuu++;
       kotaetakazu++;
@@ -442,7 +506,8 @@ const seigohantei = function(){
         ngbrn.play();
         audbn.play();
         let railchild = document.createElement("li");
-        railchild.innerHTML = "<img src='https://lhaidelabo.com/wp-content/uploads/2020/05/minibatu.png'>";
+        railchild.classList.add("ng");
+        railchild.innerText = "不正解....";
         scorerail.appendChild(railchild);
         huseikaisuu = huseikaisuu + 1;
         kotaetakazu = kotaetakazu + 1;
@@ -584,3 +649,4 @@ selectans2.onclick = function(){
   } 
   clickflag = true;
 }
+})

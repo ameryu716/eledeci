@@ -1,11 +1,5 @@
 @charset "utf-8";
 
-.clearfix:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
 body{
   position: absolute;
   width: 100%;
@@ -23,39 +17,37 @@ body{
 }
 #gamename {
   height: auto;
-  border: green 1px solid;
-  width: 450px;
+  border-left: green 10px solid;
+  width: auto;
   border-top-right-radius: 50px;
   border-bottom-left-radius: 40px;
   position: absolute;
   z-index: 1;
 }
 #logo {
-  float: left;
   padding: 5px 5px 0 10px;
   cursor: pointer;
 }
 #gamenametrue {
-  color: red;
-  padding: 15px 5px 15px 140px;
+  padding: 3px 10px 18px;
   width: auto;
 }
 #gamenametrue h1 {
-  width: 280px;
+  width: auto;
   margin-bottom: 0;
   font-family: 'Lora', serif;
-  color: green;
+  color: dimgray;
   padding-left: 10px;
   padding-bottom: 3px;
-  border-bottom: red 1px ridge;
 }
 
 #allscore {
   position: absolute;
-  left: 700px;
+  right: 10%;
   font-size: 25px;
   padding: 40px;
   font-family: cursive;
+  top: 0;
 }
 
 
@@ -100,20 +92,21 @@ input[type="checkbox"]:checked + label{
   top: 55%;
   right: 42%;
   font-size: 64px;
-  background-color: coral;
-  color: snow;
-  border: 5px solid red;
-  box-shadow: 5px 10px 3px rgba(200,0,0,0.7);
+  background-color: transparent;
+  color: coral;
   z-index: 2;
   cursor: pointer;
+  border: none;
+  border-bottom: solid 2px coral;
+  transition: 0.5s;
 }
 
 
 
 #gamestartbtn:hover {
-  box-shadow: -5px 7px 2px rgba(200,0,0,0.7);
-  transition: 1s;
+  transform: scale(1.3);
 }
+
 
 #heximg {
   display: none;
@@ -157,10 +150,6 @@ input[type="checkbox"]:checked + label{
   width: 100px;
   height: 500px;
 }
-.scoreboardimg {
-  position: absolute;
-  z-index: 0;
-}
 #pcscore {
   display: block;
 }
@@ -171,15 +160,21 @@ input[type="checkbox"]:checked + label{
 #scorerail {
   position: absolute;
   z-index: 1;
-  padding: 30px;
-  height: 440px;
-  width: 98px;
-  list-style: none;
+  padding: 10px;
+  height: 75vh;
+  width: 150px;
+  list-style: decimal;
 }
 #scorerail li {
   margin: 0 4px;
-  float: left;
-  height: 44px;
+  height: auto;
+  font-size: 24px;
+}
+#scorerail li.ok {
+  color: red;
+}
+#scorerail li.ng {
+  color: blue;
 }
 
 #hyouka {
@@ -209,13 +204,13 @@ input[type="checkbox"]:checked + label{
 
 
 .game-corner {
-  height: 450px;
+  height: 80vh;
   width: 900px;
   border: coral 2px solid;
   background-image: url(../images/tail.png);
   display: none;
   position: absolute;
-  top: 22%;
+  top: 16%;
   left: 16.5%;
   z-index: 1;
   font-family: 'Noto Serif JP', serif;
@@ -241,6 +236,7 @@ input[type="checkbox"]:checked + label{
   width: 96%;
   height: 300px;
   margin: 2%;
+  display: flex;
 }
 .selecta {
   position: relative;
@@ -251,16 +247,15 @@ input[type="checkbox"]:checked + label{
   margin: 0 5px;
   cursor: pointer;
   z-index: 1;
+  border-radius: 10px;
 }
 #selectans-1 {
-  float: left;
-  background-color: rgba(255,0,0,0.95);
+  border: solid 3px red;
   box-shadow: 4px 7px 3px rgba(255,0,0,0.7);
   margin: 5px 10px;
 }
 #selectans-2 {
-  float: right;
-  background-color: rgba(0,0,255,0.95);
+  border: solid 3px blue;
   box-shadow: 4px 7px 3px rgba(0,0,255,0.7);
   margin: 5px 10px;
 }
@@ -360,7 +355,7 @@ input[type="checkbox"]:checked + label{
     background-color: #fff;
   }
   #logo {
-    float: left;
+
     position: relative;
   }
   .logoimg {
@@ -393,7 +388,7 @@ input[type="checkbox"]:checked + label{
     top: 18%;
     font-size: 4vw;
     width: 40%;
-    float: right;
+
     margin: 5px 0 0 0;
     font-family: serif;
     background-color: #fff;
@@ -404,12 +399,13 @@ input[type="checkbox"]:checked + label{
     position: relative;
     right: 0;
     top: 0;
+    display: flex;
   }
   .modelabel {
     font-size: 4vw;
     margin: 1%;
     padding: 7px 3.2%;
-    float: left;
+
   }
   #gamestartbtn {
     top: 55%;
@@ -446,21 +442,23 @@ input[type="checkbox"]:checked + label{
   #Score {
     position: relative;
     top: auto;
-    width: 330px;
-    height: 100px;
+    width: 350px;
+    height: 130px;
     margin: 0 auto 10px;
   }
-  #scorerail{
-    padding: 10px 11px;
-    height: 70px;
-    width: 310px;
-  }
+  #scorerail {
+    padding: 5px;
+    height: auto;
+    width: auto;
+    margin: 0 0 0 15px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
   #scorerail li{
     margin: 0 3px;
-    height: 34px;
-  }
-  #scorerail li img {
-    width: 25px;
+    height: 20px;
+    font-size: 3vw;
   }
   
   
@@ -494,7 +492,7 @@ input[type="checkbox"]:checked + label{
     font-family: "Kosugi Maru","serif";
     width: 91vw;
     height: 80px;
-    float: left;
+
     padding: 3vw;
     font-weight: 600;
     border-radius: 10px;
