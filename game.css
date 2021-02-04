@@ -324,12 +324,13 @@ input[type="checkbox"]:checked + label{
   top: auto;
   padding: 0;
   border: aliceblue 1px solid;
-  margin: 1vw;
+  margin: 1vh 1vw;
   background-image: url(../images/dscwood.png);
   background-size: contain;
   box-sizing: border-box;
   height: 98vh;
   position: relative;
+  overflow: hidden;
 }
   #adsdiv {
     display: block;
@@ -339,7 +340,7 @@ input[type="checkbox"]:checked + label{
     height: 100px;
     border: solid black 1px;
     bottom: 40px;
-    left: 7%;
+    left: 10%;
 }
   main {
     padding: 10px 0;
