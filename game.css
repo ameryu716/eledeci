@@ -428,6 +428,9 @@ input[type="checkbox"]:checked + label{
     left: 22%;
     font-size: 40px;
   }
+  .test {
+    /* deploytest */
+  }
   .game-corner {
     width: 96%;
     height: auto;
