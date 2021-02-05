@@ -438,17 +438,15 @@ input[type="checkbox"]:checked + label{
     left: 22%;
     font-size: 40px;
   }
-  .test {
-    /* deploytest */
-  }
   .game-corner {
     width: 96%;
     height: auto;
     padding-bottom: 30px;
     position: absolute;
     margin: 0 2%;
-    top: 140%;
     left: 0;
+    bottom: 10%;
+    top: unset;
 }
   #g-mission {
     width: 85%;
