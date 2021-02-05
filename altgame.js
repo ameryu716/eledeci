@@ -106,7 +106,9 @@ window.addEventListener("load",()=>{
 
 const hyouka = document.getElementById("hyouka");
 const gamecorner = document.getElementsByClassName("game-corner");
-const bplaydisp = document.getElementsByClassName("bplaydisp");//double-Elements-back.
+const optiondiv = document.getElementById("option");
+const startdiv = document.getElementById("startdiv");
+
 const clearop = document.getElementsByClassName("clearop");
 const scorenode = document.getElementById("scorerail"); 
 const gamestartbtn = document.getElementById("gamestartbtn");
@@ -432,8 +434,8 @@ const logoandend = function(){
     huseikaisuu = 0;
     totalratec = totalsei/totalsyutudai;
     totalratec = Math.round(totalratec*100);
-    DelayFadein(2,bplaydisp[0]);
-    DelayFlexin(2,bplaydisp[1]);
+    DelayFadein(2,startdiv);
+    DelayFlexin(2,optiondiv);
     alscore1.innerText = "トータル正解："+totalsei+"/"+totalsyutudai;
     alscore2.innerText = "正解率："+totalratec+"%";
 }; //正解率出力+ホーム遷移
@@ -526,7 +528,7 @@ const seigohantei = function(){
 }
 
 gamestartbtn.addEventListener("click",()=>{
-    DelayFadeout(0.5,bplaydisp[0],bplaydisp[1]);
+    DelayFadeout(0.5,optiondiv,startdiv);
     Fadeout(navmessage);
     modechange();
     resetsur();
@@ -550,8 +552,8 @@ hyouka.onclick = ()=>{
     totalratec = totalsei/totalsyutudai;
     totalratec = Math.round(totalratec*100);
     navmessage.style.display = "inline";
-    DelayFadein(2,bplaydisp[0]);
-    DelayFlexin(2,bplaydisp[1]);
+    DelayFadein(2,startdiv);
+    DelayFlexin(2,optiondiv);
 
     alscore1.innerText = "トータル正解："+totalsei+"/"+totalsyutudai;
     alscore2.innerText = "正解率："+totalratec+"%";
