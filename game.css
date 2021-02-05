@@ -71,6 +71,10 @@ body{
   right: 11%;
   top: 42%;
 }
+#startdiv {
+  height: 62vh;
+}
+
 
 input[type=checkbox]{
   display: none;
@@ -119,8 +123,8 @@ input[type="checkbox"]:checked + label{
 #heximg {
   display: none;
   position: absolute;
-  top: 40%;
-  right: 30%;
+  bottom: -12%;
+  left: 0;
   z-index: 0;
   animation-name: hexim;
   animation-duration: 2s;
@@ -132,8 +136,8 @@ input[type="checkbox"]:checked + label{
 #greenhex{
   display: none;
   position: absolute;
-  top: 20%;
-  left: 25%;
+  top: 7%;
+  right: 0;
   z-index: 0;
   animation-name: hexim2;
   animation-duration: 2.5s;
@@ -347,13 +351,16 @@ input[type="checkbox"]:checked + label{
     width: 320px;
     height: 100px;
     border: solid black 1px;
-    top: 76%;
-    left: 7%;
+    top: 85%;
+    left: 11%;
+    z-index: 1;
+    background-color: #fff;
 }
   main {
     padding: 10px 0;
     border-top:rgba(0,255,30,0.2) solid 1px;
     position: relative;
+    height: 70vh;
   }
   #pcscore {
     display: none;
@@ -409,7 +416,10 @@ input[type="checkbox"]:checked + label{
     background-color: #fff;
     padding: 3px;
     border-radius: 10px;
-}
+  }
+  .bplaydisp {
+    position: relative;
+  }
   #option {
     position: relative;
     right: 0;
