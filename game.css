@@ -6,7 +6,7 @@ body{
   height: 650px;
 }
 
-#saigaikaku {
+#wrap {
   left: -10px;
   top: -10px;
   padding: 10px 20px;
@@ -46,11 +46,18 @@ body{
   top: 0;
 }
 
-#back {
+#top-message {
   margin: 0;
+  width: 99vw;
+}
+#back {
+  display: none;
   color: cornflowerblue;
-  width: fit-content;
   text-decoration: underline;
+}
+#navigate {
+  color: cornflowerblue;
+  font-size: 4vw;
 }
 
 #bplaydisp {
@@ -318,7 +325,7 @@ input[type="checkbox"]:checked + label{
     height: 100vh;
     box-sizing: border-box;
 }
-#saigaikaku {
+#wrap {
   padding: 3% 1% 0;
   width: 98vw;
   left: auto;

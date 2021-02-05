@@ -1,6 +1,7 @@
 export class FooterGear {
   constructor() {
-    this.question = ["実はまだ未解決のバグがあります",
+    this.question = [
+    "実はまだ未解決のバグがあります",
     "ロボ君をタップで不正ができます",
     "問題文は作者の黒歴史......？",
     "作者のおすすめは勝ち抜きモード！",

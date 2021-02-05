@@ -35,6 +35,22 @@ const DelayFadein = (delay,...node)=>{
   }
 }//※フェード秒数は10秒以内です
 
+const DelayFlexin = (delay,...node)=>{
+  if(delay<10){
+      for(let i=0;i<node.length;i++){
+          node[i].style.display = "flex";
+          node[i].style.transition = 0;
+          node[i].style.opacity = "0";
+          node[i].style.transition = delay+"s";
+          setTimeout(()=>{
+              node[i].style.opacity = "1";
+          },100)
+      }
+  }else{
+      console.error("フェード秒数が長すぎます");
+  }
+}//※フェード秒数は10秒以内です
+
 const DelayFadeout = (delay,...node)=>{
   if(delay<10){
       for(let i=0;i<node.length;i++){
@@ -77,14 +93,11 @@ let kotaetakazu = 0;　//一次出題数
 let totalsei = 0;　//総合正解数
 let totalhusei = 0;　//総合不正解数
 let totalsyutudai = 0;　//総合出題数
-let totalratec = 0;
+let totalratec = 0; //総合正解率
 
-let modecheck = 0;  //モード変更チェックボックスの状態
-let randomhyouka = 0;
-let sikenyo = 0;
-
+let scoreComment = ""; //評価コメント（ランダム）
 let ratecorrect = 0;  //正解率
-let unlimitedcontinue = 0;  //50問以上で表示・続けるかどうか
+let unlimitedcontinue = true;  //50問以上で表示・続けるかどうか
 
 
 
@@ -100,10 +113,9 @@ const gamestartbtn = document.getElementById("gamestartbtn");
 const missiontitle = document.getElementById("missiontitle");//問題文elements
 const selectans1 = document.getElementById("selectans-1");//選択肢1elements
 const selectans2 = document.getElementById("selectans-2");//選択肢2elements
+
 const backbtn = document.getElementById("back");
-
-
-
+const navmessage = document.getElementById("navigate");
 const alscore1 = document.getElementById("alsc1");
 const alscore2 = document.getElementById("alsc2");
 
@@ -353,47 +365,42 @@ const hyoukalist = {
   h_manten : ["君は神かもしれない","君に教えることはもうない","その力で世界を救え","レベル・神"],//正解率100%
   h_gomten : ["馬鹿なの？（直球）","何故生きている！？","えぇ.....（困惑）","大丈夫ですか？（煽り）"],//正解率50%以下
   h_tukumogami : ["逆位相の神","貴殿こそ本物だ","七十二柱が一柱","賽の河原に就職"]//正解率0%
-}
+}//評価リスト
   
 const hyoukafase = function(){
   ratecorrect = 0;
-  randomhyouka = Math.floor(Math.random()*4);
-  sikenyo = "";
+  let randomhyouka = Math.floor(Math.random()*4);
+  scoreComment = "";
   
   ratecorrect = seikaisuu/kotaetakazu;
   ratecorrect = Math.round(ratecorrect*100)/100;
  
   if(ratecorrect>0.74&&ratecorrect<1){
-    sikenyo = hyoukalist.h_heibon[randomhyouka];
+    scoreComment = hyoukalist.h_heibon[randomhyouka];
   }else if(ratecorrect>0.49&&ratecorrect<0.75){
-    sikenyo = hyoukalist.h_bonjin[randomhyouka];
+    scoreComment = hyoukalist.h_bonjin[randomhyouka];
   }else if(ratecorrect===1){
-    sikenyo = hyoukalist.h_manten[randomhyouka];
+    scoreComment = hyoukalist.h_manten[randomhyouka];
   }else if(ratecorrect<0.5&&ratecorrect>0){
-    sikenyo = hyoukalist.h_gomten[randomhyouka];
+    scoreComment = hyoukalist.h_gomten[randomhyouka];
   }else if(ratecorrect===0){
-    sikenyo = hyoukalist.h_tukumogami[randomhyouka];
+    scoreComment = hyoukalist.h_tukumogami[randomhyouka];
   }
-    document.getElementById("hyoukaspa").innerHTML = sikenyo;
+    document.getElementById("hyoukaspa").innerHTML = scoreComment;
     Fadein(hyouka);
 };
 
 const resetsur = function(){
- let mondaigime = Math.floor(Math.random()*227)+1;//乱数から問セッティング
- Gamestate.question = Erabu[mondaigime][0];
- Gamestate.rightnum = Erabu[mondaigime][3];
- Gamestate.choices1 = Erabu[mondaigime][1];
- Gamestate.choices2 = Erabu[mondaigime][2];
-}
-
-const htchange = function(){ //問題文変更
-  missiontitle.innerText = Gamestate.question;
-  selectans1.innerText = Gamestate.choices1;
-  selectans2.innerText = Gamestate.choices2;
+    const whatMissionNum = Math.floor(Math.random()*227)+1;//乱数から問セッティング227問
+    missiontitle.innerText = Erabu[whatMissionNum][0];
+    Gamestate.rightnum = Erabu[whatMissionNum][3];
+    selectans1.innerText = Erabu[whatMissionNum][1];
+    selectans2.innerText = Erabu[whatMissionNum][2];
+    //問題格納
 }
 
 const modechange = function(){
-    modecheck = document.getElementsByName("limitchange");
+    const modecheck = document.getElementsByName("limitchange");
     Gamestate.mistaken = false;
     unlimitedcontinue = true;
     if(modecheck[0].checked){
@@ -425,7 +432,8 @@ const logoandend = function(){
     huseikaisuu = 0;
     totalratec = totalsei/totalsyutudai;
     totalratec = Math.round(totalratec*100);
-    DelayFadein(2,bplaydisp[0],bplaydisp[1]);
+    DelayFadein(2,bplaydisp[0]);
+    DelayFlexin(2,bplaydisp[1]);
     alscore1.innerText = "トータル正解："+totalsei+"/"+totalsyutudai;
     alscore2.innerText = "正解率："+totalratec+"%";
 }; //正解率出力+ホーム遷移
@@ -443,14 +451,14 @@ backbtn.onclick = ()=>{
 
 
 const optioncb = document.getElementsByClassName("optioncb");
-  for(let i=0;i<optioncb.length;i++){
-      optioncb[i].onclick = function(){
-        optioncb[0].checked = false;
-        optioncb[1].checked = false;
-        optioncb[2].checked = false;
-        this.checked = true;
-      }
-  }
+for(let i=0;i<optioncb.length;i++){
+    optioncb[i].onclick = function(){
+      optioncb[0].checked = false;
+      optioncb[1].checked = false;
+      optioncb[2].checked = false;
+      this.checked = true;
+    }
+}
 
 gamestartbtn.addEventListener("mouseenter",()=>{
   DelayFadein(0.5,document.getElementById("heximg"),document.getElementById("greenhex"));
@@ -518,18 +526,20 @@ const seigohantei = function(){
 }
 
 gamestartbtn.addEventListener("click",()=>{
-  DelayFadeout(0.5,bplaydisp[0],bplaydisp[1]);
-  modechange();
-  resetsur();
-  htchange();
-  Fadein(gamecorner[0]);
-  //問題設定宣言
+    DelayFadeout(0.5,bplaydisp[0],bplaydisp[1]);
+    Fadeout(navmessage);
+    modechange();
+    resetsur();
+    backbtn.style.display = "inline";
+    Fadein(gamecorner[0]);
+    //問題設定宣言
 })
 
 hyouka.onclick = ()=>{
   if(gameobrn.paused){
     DelayFadeout(1,gameobrn,clearop[0],hyouka);
     Fadeout(gamecorner[0]);
+    Fadeout(backbtn);
     totalsyutudai = totalsyutudai + kotaetakazu;
     kotaetakazu = 0;
     scorerail.innerHTML = "";
@@ -539,7 +549,10 @@ hyouka.onclick = ()=>{
     huseikaisuu = 0;
     totalratec = totalsei/totalsyutudai;
     totalratec = Math.round(totalratec*100);
-    DelayFadein(2,bplaydisp[0],bplaydisp[1]);
+    navmessage.style.display = "inline";
+    DelayFadein(2,bplaydisp[0]);
+    DelayFlexin(2,bplaydisp[1]);
+
     alscore1.innerText = "トータル正解："+totalsei+"/"+totalsyutudai;
     alscore2.innerText = "正解率："+totalratec+"%";
   }
@@ -556,7 +569,6 @@ selectans1.onclick = function(){
     DelayFadeout(1,okimg,ngbrn,clearop[0]);
   }
   resetsur();
-  htchange();
 
   switch(Gamestate.mode){
     case 1:
@@ -610,7 +622,6 @@ selectans2.onclick = function(){
     DelayFadeout(1,okimg,ngbrn,clearop[0]);
   }
   resetsur();
-  htchange();
     
   switch(Gamestate.mode){
     case 1:
