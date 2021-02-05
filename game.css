@@ -347,8 +347,8 @@ input[type="checkbox"]:checked + label{
     width: 320px;
     height: 100px;
     border: solid black 1px;
-    bottom: 40px;
-    left: 10%;
+    top: 76%;
+    left: 7%;
 }
   main {
     padding: 10px 0;
