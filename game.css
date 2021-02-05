@@ -219,7 +219,6 @@ input[type="checkbox"]:checked + label{
   height: 80vh;
   width: 900px;
   border: coral 2px solid;
-  background-image: url(../images/tail.png);
   display: none;
   position: absolute;
   top: 16%;
@@ -325,7 +324,6 @@ input[type="checkbox"]:checked + label{
   }
   body {
     margin: 0;
-    background-image: url(../images/woodback.jpg);
     height: 100vh;
     box-sizing: border-box;
 }
@@ -337,7 +335,6 @@ input[type="checkbox"]:checked + label{
   padding: 0;
   border: aliceblue 1px solid;
   margin: 1vh 1vw;
-  background-image: url(../images/dscwood.png);
   background-size: contain;
   box-sizing: border-box;
   height: 98vh;
@@ -425,6 +422,15 @@ input[type="checkbox"]:checked + label{
     right: 0;
     top: 0;
     display: flex;
+    padding: 25px 0 5px 5px;
+    border-bottom: solid 1px #8dff788c;
+  }
+  #option h3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    color: mediumseagreen;
   }
   .modelabel {
     font-size: 4vw;

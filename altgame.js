@@ -423,6 +423,7 @@ const logoandend = function(){
     alert("回答を中断します");
     DelayFadeout(1,hyouka);
     Fadeout(gamecorner[0]);
+    Fadeout(backbtn);
     totalsyutudai = totalsyutudai + kotaetakazu;
     kotaetakazu = 0;
     while(scorenode.firstChild){
@@ -434,6 +435,7 @@ const logoandend = function(){
     huseikaisuu = 0;
     totalratec = totalsei/totalsyutudai;
     totalratec = Math.round(totalratec*100);
+    navmessage.style.display = "inline";
     DelayFadein(2,startdiv);
     DelayFlexin(2,optiondiv);
     alscore1.innerText = "トータル正解："+totalsei+"/"+totalsyutudai;
