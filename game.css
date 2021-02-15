@@ -13,7 +13,8 @@ body{
   background-color: #ffffff;
   height: 650px;
   position: absolute;
-  width: 102%;
+  width: 100%;
+  box-sizing: border-box;
 }
 #gamename {
   height: auto;
@@ -21,7 +22,7 @@ body{
   width: auto;
   border-top-right-radius: 50px;
   border-bottom-left-radius: 40px;
-  position: absolute;
+  position: relative;
   z-index: 1;
 }
 #gamenametrue {
@@ -54,12 +55,12 @@ body{
   display: none;
   color: cornflowerblue;
   text-decoration: underline;
-  font-size: 4vw;
+  font-size: 24px;
   cursor: pointer;
 }
 #navigate {
   color: cornflowerblue;
-  font-size: 4vw;
+  font-size: 24px;
 }
 
 #bplaydisp {
@@ -71,7 +72,7 @@ body{
 #option {
   position: absolute;
   right: 11%;
-  top: 42%;
+  top: 20%;
 }
 #startdiv {
   height: 62vh;
@@ -103,7 +104,7 @@ input[type="checkbox"]:checked + label{
 
 #gamestartbtn {
   position: absolute;
-  top: 55%;
+  top: 45%;
   right: 42%;
   font-size: 64px;
   background-color: transparent;
@@ -229,6 +230,22 @@ input[type="checkbox"]:checked + label{
   z-index: 1;
   font-family: 'Noto Serif JP', serif;
 }
+#mission-number {
+  font-size: 24px;
+  display: block;
+  height: auto;
+  display: flex;
+  padding: 7px 0 0 10px;
+  position: absolute;
+}
+#mission-number::before {
+  content: "";
+  display: block;
+  height: 35px;
+  width: 7px;
+  background-color: orangered;
+  margin-right: 5px;
+}
 
 #g-mission {
   width: 70%;
@@ -352,7 +369,7 @@ footer {
     display: block;
     position: relative;
     margin: 0 auto;
-    width: 800px;
+    width: 90vw;
     height: 100px;
     border: solid black 1px;
     z-index: 1;
@@ -361,7 +378,7 @@ footer {
     padding: 10px 0;
     border-top:rgba(0,255,30,0.2) solid 1px;
     position: relative;
-    height: 67vh;
+    height: 70vh;
   }
   #pcscore {
     display: none;
@@ -379,7 +396,6 @@ footer {
     background-color: #fff;
   }
   #logo {
-
     position: relative;
   }
   .logoimg {
@@ -402,6 +418,12 @@ footer {
     margin: 0;
     line-height: 1.5;
   }
+  #back {
+    font-size: 4vw;
+  }
+  #navigate {
+    font-size: 4vw;
+  }
   #decisionenter {
     padding-left: 20px;
   }
@@ -423,6 +445,7 @@ footer {
   }
   #startdiv {
     height: 50vh;
+    width: 100%;
   }
   #option {
     position: relative;
@@ -460,23 +483,13 @@ footer {
     margin: 0 2%;
     top: 35%;
     left: 0;
-}
-#mission-number {
-  font-size: 5vw;
-  display: block;
-  height: auto;
-  display: flex;
-  padding: 7px 0 0 10px;
-  position: absolute;
-}
-#mission-number::before {
-  content: "";
-  display: block;
-  height: 30px;
-  width: 1vw;
-  background-color: orangered;
-  margin-right: 5px;
-}
+  }
+  #mission-number {
+    font-size: 5vw;
+  }
+  #mission-number::before {
+    height: 55px;
+  }
   #g-mission {
     width: 85%;
     height: auto;
@@ -541,6 +554,9 @@ footer {
 
 @media screen and (max-width:600px){
   /* 600px以下 */
+  main {
+    height: 67vh;
+  }
   footer {
     font-size: 4vw;
   }
@@ -553,5 +569,8 @@ footer {
   #scorerail li{
     height: 20px;
     font-size: 3vw;
+  }
+  #mission-number::before {
+    height: 30px;
   }
 } 
