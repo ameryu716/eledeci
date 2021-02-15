@@ -1,3 +1,5 @@
+alert(window.outerHeight+":"+window.outerWidth);
+alert(window.innerHeight+":"+window.innerHeight);
 const Fadeout = function(elemen){
   elemen.style.display = "none";
 }
@@ -115,6 +117,7 @@ const gamestartbtn = document.getElementById("gamestartbtn");
 const missiontitle = document.getElementById("missiontitle");//問題文elements
 const selectans1 = document.getElementById("selectans-1");//選択肢1elements
 const selectans2 = document.getElementById("selectans-2");//選択肢2elements
+const missionnumberElement = document.getElementById("mission-number");//何問目表示
 
 const backbtn = document.getElementById("back");
 const navmessage = document.getElementById("navigate");
@@ -398,6 +401,7 @@ const resetsur = function(){
     Gamestate.rightnum = Erabu[whatMissionNum][3];
     selectans1.innerText = Erabu[whatMissionNum][1];
     selectans2.innerText = Erabu[whatMissionNum][2];
+    missionnumberElement.innerText = "第"+(kotaetakazu+1)+"問";
     //問題格納
 }
 
