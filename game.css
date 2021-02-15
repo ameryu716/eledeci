@@ -113,6 +113,7 @@ input[type="checkbox"]:checked + label{
   border: none;
   border-bottom: solid 2px coral;
   transition: 0.5s;
+  white-space: nowrap;
 }
 
 
@@ -512,8 +513,8 @@ footer {
   }
   #scorerail li{
     margin: 0 8px;
-    height: 20px;
-    font-size: 3vw;
+    height: 22px;
+    font-size: 2.5vw;
   }
   
   
@@ -548,5 +549,9 @@ footer {
   }
   #adsdiv {
     width: 320px;
+  }
+  #scorerail li{
+    height: 20px;
+    font-size: 3vw;
   }
 } 
