@@ -4,13 +4,13 @@ body{
   position: absolute;
   width: 100%;
   height: 650px;
+  background-color: #fff;
 }
 
 #wrap {
   left: -10px;
   top: -10px;
   padding: 10px 20px;
-  background-color: #ffffff;
   height: 650px;
   position: absolute;
   width: 100%;
@@ -199,7 +199,7 @@ input[type="checkbox"]:checked + label{
   width: 99%;
   height: 800px;
   background-color: rgba(255,255,255,0.8);
-  position: absolute;
+  position: fixed;
   z-index: 10;
   cursor: pointer;
 }
@@ -252,7 +252,6 @@ input[type="checkbox"]:checked + label{
   width: 70%;
   height: 70px;
   margin: 2% auto;
-  background-color: #ffffff;
   position: relative;
   z-index: 1;
 }
@@ -394,7 +393,6 @@ footer {
     margin: 5px;
     border-top-right-radius: 25px;
     border-bottom-left-radius: 20px;
-    background-color: #fff;
   }
   #logo {
     position: relative;
@@ -437,7 +435,6 @@ footer {
     width: 40%;
     margin: 5px 0 0 0;
     font-family: serif;
-    background-color: #fff;
     padding: 3px;
     border-radius: 10px;
   }
@@ -471,7 +468,6 @@ footer {
 
   }
   #startdiv {
-    border: solid 2px red;
     width: 98%;
   }
   #gamestartbtn {
@@ -550,10 +546,12 @@ footer {
   }
   #hyouka{
     top: 0;
+    left: 0;
   }
   #hyoukaspa{
     padding: 50vh 0;
     font-size: 30px;
+    text-decoration: underline;
   }
   footer {
     font-size: 3vw;
@@ -585,4 +583,27 @@ footer {
     font-size: 10vw;
     margin-top: 50%;
   }
-} 
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #23282d;
+    color: #eee;
+  }
+  .modelabel {
+    border: solid 2px mediumseagreen;
+  }
+  input[type="checkbox"]:checked + label {
+    background-color: #eee;
+    color: lightseagreen;
+    font-weight: bold;
+  }
+  #hyouka {
+    background-color: rgba(255,255,255,0.4);
+    color: #222;
+    font-weight: bold;
+  }
+  #gamenametrue h1 {
+    color: cadetblue;
+  }
+}
