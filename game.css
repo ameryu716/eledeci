@@ -357,7 +357,6 @@ footer {
   left: auto;
   top: auto;
   padding: 0;
-  border: aliceblue 1px solid;
   margin: 1vh 1vw;
   background-size: contain;
   box-sizing: border-box;
@@ -591,6 +590,7 @@ footer {
     color: #eee;
   }
   .modelabel {
+    background-color: transparent;
     border: solid 2px mediumseagreen;
   }
   input[type="checkbox"]:checked + label {
@@ -605,5 +605,8 @@ footer {
   }
   #gamenametrue h1 {
     color: cadetblue;
+  }
+  #g-mission h2 {
+    font-weight: 400;
   }
 }

@@ -1,24 +1,9 @@
-alert(window.outerHeight+":"+window.outerWidth);
-alert(window.innerHeight+":"+window.innerHeight);
 const Fadeout = function(elemen){
   elemen.style.display = "none";
 }
 const Fadein = function(elemen){
   elemen.style.display = "block";
   elemen.style.opacity = "1";
-}
-
-const MulchFadein = (...palam)=>{
-  for(let i=0;i<palam.length;i++){
-      palam[i].style.display = "block";
-  }
-  console.log(palam);
-}
-const MulchFadeout = (...palam)=>{
-  for(let i=0;i<palam.length;i++){
-      palam[i].style.display = "none";
-  }
-  console.log(palam);
 }
 
 const DelayFadein = (delay,...node)=>{
@@ -68,13 +53,6 @@ const DelayFadeout = (delay,...node)=>{
       console.error("フェード秒数が長すぎます");
   }
 }//※フェード秒数は10秒以内です
-
-
-
-
-
-// import {Fadein,Fadeout,MulchFadein,MulchFadeout,DelayFadein,DelayFadeout} from './Module-Fade';
-// import {FooterGear} from './Module-FooterEngine';
 
 const Gamestate = {
   mode: 1,//1=unlimited//2=20limited//3=undefeated
@@ -128,9 +106,6 @@ const alscore2 = document.getElementById("alsc2");
 //2＝第一選択肢
 //3＝第二選択肢
 //4＝正しい選択肢（数字
-
-// new FooterGear();
-
 
 const Erabu = [
   ['星の"奔流"',"ほんりゅう","はんりゅう",1],
