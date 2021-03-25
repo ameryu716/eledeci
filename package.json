@@ -1,0 +1,20 @@
+{
+  "name": "eledeci",
+  "version": "1.0.0",
+  "description": "漢検二級の読み・二択クイズ",
+  "main": "altgame.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildscs": "sass --style=expanded game.scss:game.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ameryu716/eledeci.git"
+  },
+  "author": "ameryu716",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ameryu716/eledeci/issues"
+  },
+  "homepage": "https://github.com/ameryu716/eledeci#readme"
+}

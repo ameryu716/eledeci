@@ -1,5 +1,6 @@
-@charset "UTF-8";
-body {
+@charset "utf-8";
+
+body{
   position: absolute;
   width: 100%;
   height: 650px;
@@ -15,7 +16,6 @@ body {
   width: 100%;
   box-sizing: border-box;
 }
-
 #gamename {
   height: auto;
   border-left: green 10px solid;
@@ -25,18 +25,17 @@ body {
   position: relative;
   z-index: 1;
 }
-
 #gamenametrue {
   padding: 3px 10px 18px;
   width: auto;
-}
-#gamenametrue h1 {
-  width: auto;
-  margin-bottom: 0;
-  font-family: 'Lora', serif;
-  color: dimgray;
-  padding-left: 10px;
-  padding-bottom: 3px;
+  h1 {
+    width: auto;
+    margin-bottom: 0;
+    font-family: 'Lora', serif;
+    color: dimgray;
+    padding-left: 10px;
+    padding-bottom: 3px;
+  }
 }
 
 #allscore {
@@ -53,7 +52,6 @@ body {
   width: 98%;
   white-space: nowrap;
 }
-
 #back {
   display: none;
   color: cornflowerblue;
@@ -61,7 +59,6 @@ body {
   font-size: 24px;
   cursor: pointer;
 }
-
 #navigate {
   color: cornflowerblue;
   font-size: 24px;
@@ -78,21 +75,20 @@ body {
   right: 11%;
   top: 20%;
 }
-
 #startdiv {
   height: 62vh;
 }
 
-input[type=checkbox] {
-  display: none;
-}
-input[type=checkbox]:checked + label {
-  transition: 1s;
-  background-color: #ffffff;
-  color: darkturquoise;
-}
 
-.modelabel {
+input[type=checkbox]{
+  display: none;
+  &:checked + label{
+    transition: 1s;
+    background-color: #ffffff;
+    color: darkturquoise;
+  }
+}
+.modelabel{
   font-size: 30px;
   margin: 10px;
   border: solid 1px green;
@@ -105,6 +101,7 @@ input[type=checkbox]:checked + label {
   background-color: lightgreen;
   color: aliceblue;
 }
+
 
 #gamestartbtn {
   position: absolute;
@@ -119,10 +116,11 @@ input[type=checkbox]:checked + label {
   border-bottom: solid 2px coral;
   transition: 0.5s;
   white-space: nowrap;
+  &:hover {
+    transform: scale(1.3);
+  }
 }
-#gamestartbtn:hover {
-  transform: scale(1.3);
-}
+
 
 #heximg {
   display: none;
@@ -137,7 +135,7 @@ input[type=checkbox]:checked + label {
   width: auto;
 }
 
-#greenhex {
+#greenhex{
   display: none;
   position: absolute;
   top: 7%;
@@ -149,40 +147,26 @@ input[type=checkbox]:checked + label {
   animation-timing-function: linear;
   width: auto;
 }
-
 @keyframes hexim {
-  0% {
-    transform: rotateZ(0deg);
-  }
-  50% {
-    transform: rotateZ(180deg);
-  }
-  100% {
-    transform: rotateZ(360deg);
-  }
+  0%{transform:rotateZ(0deg);}
+  50%{transform: rotateZ(180deg);}
+  100%{transform:rotateZ(360deg);}
 }
 @keyframes hexim2 {
-  0% {
-    transform: rotateZ(0deg);
-  }
-  50% {
-    transform: rotateZ(180deg);
-  }
-  100% {
-    transform: rotateZ(360deg);
-  }
+  0%{transform:rotateZ(0deg);}
+  50%{transform: rotateZ(180deg);}
+  100%{transform:rotateZ(360deg);}
 }
+
 #Score {
   position: absolute;
   top: 125px;
   width: 100px;
   height: 500px;
 }
-
 #pcscore {
   display: block;
 }
-
 #mobilescore {
   display: none;
 }
@@ -194,30 +178,29 @@ input[type=checkbox]:checked + label {
   height: 75vh;
   width: 150px;
   list-style: decimal;
-}
-#scorerail li {
-  margin: 0 4px;
-  height: auto;
-  font-size: 24px;
-}
-#scorerail li.ok {
-  color: red;
-}
-#scorerail li.ng {
-  color: blue;
+  li {
+    margin: 0 4px;
+    height: auto;
+    font-size: 24px;
+    &.ok {
+      color: red;
+    }
+    &.ng {
+      color: blue;
+    }
+  }
 }
 
 #hyouka {
   display: none;
   width: 99%;
   height: 800px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255,255,255,0.8);
   position: fixed;
   z-index: 10;
   cursor: pointer;
 }
-
-#hyoukaspa {
+#hyoukaspa{
   position: relative;
   display: block;
   text-align: center;
@@ -225,6 +208,14 @@ input[type=checkbox]:checked + label {
   font-size: 80px;
   font-family: serif;
 }
+
+
+
+
+
+
+
+
 
 .game-corner {
   height: 80vh;
@@ -237,7 +228,6 @@ input[type=checkbox]:checked + label {
   z-index: 1;
   font-family: 'Noto Serif JP', serif;
 }
-
 #mission-number {
   font-size: 24px;
   display: block;
@@ -245,14 +235,14 @@ input[type=checkbox]:checked + label {
   display: flex;
   padding: 7px 0 0 10px;
   position: absolute;
-}
-#mission-number::before {
-  content: "";
-  display: block;
-  height: 35px;
-  width: 7px;
-  background-color: orangered;
-  margin-right: 5px;
+  &::before {
+    content: "";
+    display: block;
+    height: 35px;
+    width: 7px;
+    background-color: orangered;
+    margin-right: 5px;
+  }
 }
 
 #g-mission {
@@ -261,24 +251,21 @@ input[type=checkbox]:checked + label {
   margin: 2% auto;
   position: relative;
   z-index: 1;
+  h2 {
+    margin-bottom: 0;
+    padding-top: 10px;
+  }
 }
-#g-mission h2 {
-  margin-bottom: 0;
-  padding-top: 10px;
-}
-
 #missiontitle {
   text-align: center;
   font-size: 38px;
 }
-
 #g-answer {
   width: 96%;
   height: 300px;
   margin: 2%;
   display: flex;
 }
-
 .selecta {
   position: relative;
   width: 45%;
@@ -289,29 +276,27 @@ input[type=checkbox]:checked + label {
   cursor: pointer;
   z-index: 1;
   border-radius: 10px;
+  &:hover {
+    box-shadow: none;
+    transform: translate(3px,7px);
+    transition: 0.5s;
+  }
 }
-.selecta:hover {
-  box-shadow: none;
-  transform: translate(3px, 7px);
-  transition: 0.5s;
-}
-
 #selectans-1 {
   border: solid 3px red;
-  box-shadow: 4px 7px 3px rgba(255, 0, 0, 0.7);
+  box-shadow: 4px 7px 3px rgba(255,0,0,0.7);
   margin: 5px 10px;
+  &:not(:hover) {
+    box-shadow: 4px 7px 3px rgba(255,0,0,0.3);
+  }
 }
-#selectans-1:not(:hover) {
-  box-shadow: 4px 7px 3px rgba(255, 0, 0, 0.3);
-}
-
 #selectans-2 {
   border: solid 3px blue;
-  box-shadow: 4px 7px 3px rgba(0, 0, 255, 0.7);
+  box-shadow: 4px 7px 3px rgba(0,0,255,0.7);
   margin: 5px 10px;
-}
-#selectans-2:not(:hover) {
-  box-shadow: 4px 7px 3px rgba(0, 0, 255, 0.3);
+  &:not(:hover) {
+    box-shadow: 4px 7px 3px rgba(0,0,255,0.3);
+  }
 }
 
 .clearop {
@@ -321,28 +306,25 @@ input[type=checkbox]:checked + label {
   width: 100%;
   height: 100%;
 }
-
 footer {
   text-align: right;
 }
 
-#okimg {
+#okimg{
   display: none;
   position: absolute;
   z-index: 2;
   bottom: 140px;
   left: 450px;
 }
-
-#ngbrn {
+#ngbrn{
   display: none;
   position: absolute;
   z-index: 2;
   bottom: 150px;
   left: 460px;
 }
-
-#gameobrn {
+#gameobrn{
   display: none;
   position: absolute;
   z-index: 6;
@@ -350,27 +332,23 @@ footer {
   left: 20%;
   width: 800px;
 }
-
 #adsdiv {
   display: none;
 }
-
 .mobileonly {
   display: none;
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width:830px) {
   /*画面サイズが600px以下の場合に適用 */
   .mobileonly {
     display: block;
   }
-
   body {
     margin: 0;
     height: 100vh;
     box-sizing: border-box;
   }
-
   #wrap {
     padding: 3% 1% 0;
     width: 98vw;
@@ -384,7 +362,6 @@ footer {
     position: relative;
     overflow: hidden;
   }
-
   #adsdiv {
     display: block;
     position: relative;
@@ -394,23 +371,19 @@ footer {
     border: solid black 1px;
     z-index: 1;
   }
-
   main {
     padding: 10px 0;
-    border-top: rgba(0, 255, 30, 0.2) solid 1px;
+    border-top:rgba(0,255,30,0.2) solid 1px;
     position: relative;
     height: 70vh;
   }
-
   #pcscore {
     display: none;
   }
-
   #mobilescore {
     display: block;
   }
-
-  #gamename {
+  #gamename{
     height: auto;
     width: 42vw;
     position: relative;
@@ -418,46 +391,38 @@ footer {
     border-top-right-radius: 25px;
     border-bottom-left-radius: 20px;
   }
-
   #logo {
     position: relative;
   }
-
   .logoimg {
     width: 45px;
     height: auto;
   }
-
   #gamenametrue {
     padding: 0;
     padding-top: 5px;
     clear: right;
+    h1 {
+      width: 150px;
+      padding-left: 10px;
+      font-size: 4.4vw;
+      border: none;
+      margin: 0;
+      line-height: 1.5;
+    }
   }
-  #gamenametrue h1 {
-    width: 150px;
-    padding-left: 10px;
-    font-size: 4.4vw;
-    border: none;
-    margin: 0;
-    line-height: 1.5;
-  }
-
   #debag {
     display: none;
   }
-
   #back {
     font-size: 4vw;
   }
-
   #navigate {
     font-size: 4vw;
   }
-
   #decisionenter {
     padding-left: 20px;
   }
-
   #allscore {
     position: absolute;
     left: auto;
@@ -470,16 +435,13 @@ footer {
     padding: 3px;
     border-radius: 10px;
   }
-
   .bplaydisp {
     position: relative;
   }
-
   #startdiv {
     height: 50vh;
     width: 100%;
   }
-
   #option {
     position: relative;
     right: 0;
@@ -487,26 +449,23 @@ footer {
     display: flex;
     padding: 25px 0 5px 5px;
     border-bottom: solid 1px #8dff788c;
+    h3 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 0;
+      color: mediumseagreen;
+      font-size: 3vw;
+    }
   }
-  #option h3 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0;
-    color: mediumseagreen;
-    font-size: 3vw;
-  }
-
   .modelabel {
     font-size: 4vw;
     margin: 1%;
     padding: 7px 3.2%;
   }
-
   #startdiv {
     width: 98%;
   }
-
   #gamestartbtn {
     position: relative;
     top: unset;
@@ -516,7 +475,6 @@ footer {
     margin: 35% auto 0;
     display: block;
   }
-
   .game-corner {
     width: 96%;
     height: auto;
@@ -526,37 +484,30 @@ footer {
     top: 30%;
     left: 0;
   }
-
   #mission-number {
     font-size: 5vw;
+    &::before {
+      height: 55px;
+    }
   }
-  #mission-number::before {
-    height: 55px;
-  }
-
   #g-mission {
     width: 85%;
     height: auto;
   }
-
-  #missiontitle {
+  #missiontitle{
     font-size: 10vw;
   }
-
   #g-answer {
     height: auto;
   }
-
   .selecta {
     width: 45%;
     padding: 20px 0;
     font-size: 6vw;
   }
-
-  #selectans-1, #selectans-2 {
+  #selectans-1,#selectans-2 {
     margin: 5px;
   }
-
   #Score {
     position: relative;
     top: auto;
@@ -564,7 +515,6 @@ footer {
     height: 130px;
     margin: 0 auto 10px;
   }
-
   #scorerail {
     padding: 5px;
     height: auto;
@@ -573,101 +523,86 @@ footer {
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
+    li{
+      margin: 0 8px;
+      height: 22px;
+      font-size: 2.5vw;
+    }
   }
-  #scorerail li {
-    margin: 0 8px;
-    height: 22px;
-    font-size: 2.5vw;
-  }
-
+  
   .clearop {
     top: 300px;
     left: 10%;
   }
-
-  #gameobrn {
+  #gameobrn{
     left: auto;
     bottom: auto;
     width: 300px;
   }
-
-  #hyouka {
+  #hyouka{
     top: 0;
     left: 0;
   }
-
-  #hyoukaspa {
+  #hyoukaspa{
     padding: 50vh 0;
     font-size: 30px;
     text-decoration: underline;
   }
-
   footer {
     font-size: 3vw;
   }
 }
-@media screen and (max-width: 600px) {
+
+@media screen and (max-width:600px){
   /* 600px以下 */
   main {
     height: 67vh;
   }
-
   footer {
     font-size: 4vw;
   }
-
   #option h3 {
     font-size: 4vw;
   }
-
   #adsdiv {
     width: 320px;
   }
-
-  #scorerail li {
+  #scorerail li{
     height: 20px;
     font-size: 3vw;
   }
-
   #mission-number::before {
     height: 30px;
   }
-
   #gamestartbtn {
     font-size: 10vw;
     margin-top: 50%;
   }
 }
+
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #23282d;
     color: #eee;
   }
-
   .modelabel {
     background-color: transparent;
     border: solid 2px mediumseagreen;
   }
-
   input[type="checkbox"]:checked + label {
     background-color: #eee;
     color: lightseagreen;
     font-weight: bold;
   }
-
   #hyouka {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255,255,255,0.7);
     color: #222;
     font-weight: bold;
   }
-
   #gamenametrue h1 {
     color: cadetblue;
   }
-
   #g-mission h2 {
     font-weight: 400;
   }
 }
-
-/*# sourceMappingURL=game.css.map */

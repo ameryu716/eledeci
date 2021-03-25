@@ -11,18 +11,18 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
     <!-- URL正規化 -->
-    <link rel="canonical" href="https://eledeci.vercel.app/elegant-Decision.html">
+    <link rel="canonical" href="https://willwebgame.com/game/eledeci/elegant-Decision.html">
     <!-- icon -->
     <link rel="icon" href="./favicon.ico">
-    <link rel="apple-touch-icon" sizes="320x320" href="https://eledeci.vercel.app/favicon.png">
+    <link rel="apple-touch-icon" sizes="320x320" href="https://willwebgame.com/game/eledeci/favicon.png">
 
 
 
     <!-- card meta -->
     <meta property="og:title" content="漢検二級読みクイズ">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://eledeci.vercel.app/elegant-Decision.html">
-    <meta property="og:image" content="https://eledeci.vercel.app/favicon.png">
+    <meta property="og:url" content="https://willwebgame.com/game/eledeci/elegant-Decision.html">
+    <meta property="og:image" content="https://willwebgame.com/game/eledeci/favicon.png">
     <meta property="og:description" content="漢検二級読みクイズ！ちゃんと読める？">
     <meta property="og:site_name" content="漢検二級読みクイズ">
     <meta name="twitter:card" content="summary">
@@ -45,7 +45,7 @@
       <p id="top-message">
         <i class="far fa-comment-dots"></i>
         <span id="back">もどる</span>
-        <span id="navigate">モードを選択し、STARTボタンを押してください。</span>
+        <span id="navigate">モードを選択し、STARTボタンを押してください。<br><span style="color: red;">※音が出ます！周囲に注意してください！</span></span>
       </p>
       <div class="bplaydisp" id="option">
         <h3><i class="fas fa-chevron-right"></i>モード</h3><br>
@@ -65,7 +65,7 @@
       <div id="Score">
         <ul id="scorerail"></ul>
       </div>
-      <div class="game-corner">
+      <div class="game-corner" id="game-corner">
         <span id="mission-number">第0問</span>
         <div id="g-mission">
           <h2 id="missiontitle"></h2>
@@ -76,7 +76,7 @@
         </div>
       </div>
       
-      <div class="clearop">
+      <div class="clearop" id="clearop">
         <img src="https://lhaidelabo.com/wp-content/uploads/2020/05/OK.png" id="okimg">
         <audio src="https://lhaidelabo.com/wp-content/uploads/2020/05/OK.mp3" id="okaud"></audio>
         <video src="https://lhaidelabo.com/wp-content/uploads/2020/05/burnmini.mp4" id="ngbrn"></video>
