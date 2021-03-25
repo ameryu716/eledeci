@@ -450,18 +450,6 @@ backbtn.onclick = ()=>{
   }
 };  //Logoリスタート
 
-
-const optioncb:HTMLCollectionOf<HTMLInputElement> = <HTMLCollectionOf<HTMLInputElement>>document.getElementsByClassName("optioncb");
-for(let i=0;i<optioncb.length;i++){
-    optioncb[i].onclick = function(){
-      optioncb[0].checked = false;
-      optioncb[1].checked = false;
-      optioncb[2].checked = false;
-      optioncb[i].checked = true;
-      // this.checked = true;
-    }
-}
-
 const heximg:HTMLImageElement = <HTMLImageElement>document.getElementById("heximg");
 const greenhex:HTMLImageElement = <HTMLImageElement>document.getElementById("greenhex");
 

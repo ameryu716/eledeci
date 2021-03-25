@@ -83,10 +83,10 @@ body {
   height: 62vh;
 }
 
-input[type=checkbox] {
+input[type=radio] {
   display: none;
 }
-input[type=checkbox]:checked + label {
+input[type=radio]:checked + label {
   transition: 1s;
   background-color: #ffffff;
   color: darkturquoise;
@@ -649,7 +649,7 @@ footer {
     border: solid 2px mediumseagreen;
   }
 
-  input[type="checkbox"]:checked + label {
+  input[type=radio]:checked + label {
     background-color: #eee;
     color: lightseagreen;
     font-weight: bold;

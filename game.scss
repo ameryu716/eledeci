@@ -80,7 +80,7 @@ body{
 }
 
 
-input[type=checkbox]{
+input[type=radio]{
   display: none;
   &:checked + label{
     transition: 1s;
@@ -589,7 +589,7 @@ footer {
     background-color: transparent;
     border: solid 2px mediumseagreen;
   }
-  input[type="checkbox"]:checked + label {
+  input[type=radio]:checked + label {
     background-color: #eee;
     color: lightseagreen;
     font-weight: bold;
