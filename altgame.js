@@ -61,15 +61,19 @@ const Gamestate = {
     selectnum: 1,
     choices1: "",
     choices2: "",
-    mistaken: false, //undefeatedで間違えたかどうか
+    mistaken: false,
+    wq: 0,
+    numCA: 0,
+    numICA: 0, //現在不正解数
 };
 let clickflag = true; //多重処理防止
-let seikaisuu = 0; //一次正解数
-let huseikaisuu = 0; //一次不正解数
-let kotaetakazu = 0; //一次出題数
-let totalsei = 0; //総合正解数
-let totalhusei = 0; //総合不正解数
-let totalsyutudai = 0; //総合出題数
+let canScroll = false; //スコア表スクロール可能譜
+// let seikaisuu: number = 0;　//一次正解数
+// let huseikaisuu: number = 0;　//一次不正解数
+// let kotaetakazu: number = 0;　//一次出題数
+let totalok = 0; //総合正解数
+let totalng = 0; //総合不正解数
+let totalQuestions = 0; //総合出題数
 let totalratec = 0; //総合正解率
 let scoreComment = ""; //評価コメント（ランダム）
 let ratecorrect = 0; //正解率
@@ -80,16 +84,32 @@ window.addEventListener("load", () => {
     const optiondiv = document.getElementById("option");
     const startdiv = document.getElementById("startdiv");
     const clearop = document.getElementById("clearop");
-    const scorenode = document.getElementById("scorerail");
+    const scoreParents = document.getElementById("Score");
+    let scorenode = document.getElementsByClassName("nowrails")[0];
+    const railPages = document.getElementById("railPages");
     const gamestartbtn = document.getElementById("gamestartbtn");
     const missiontitle = document.getElementById("missiontitle"); //問題文elements
     const selectans1 = document.getElementById("selectans-1"); //選択肢1elements
     const selectans2 = document.getElementById("selectans-2"); //選択肢2elements
     const missionnumberElement = document.getElementById("mission-number"); //何問目表示
     const backbtn = document.getElementById("back");
-    const navmessage = document.getElementById("navigate");
+    const navmessage = document.getElementById("top-message");
     const alscore1 = document.getElementById("alsc1");
     const alscore2 = document.getElementById("alsc2");
+    const heximg = document.getElementById("heximg"); //青六角形
+    const greenhex = document.getElementById("greenhex"); //緑六角形
+    let railPagesCount = 11; //評価リストタイトル用
+    let scroller = 50; //ページング用トランスフォーム
+    let pagingVolume = 190; //デバイスごとのスクロール量
+    let sumahoflag = false; //スマホフラグ
+    let pxORper = "px"; //デバイスごと単位管理
+    if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPad') > 0 || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+        //スマートフォン時に実行したいjs
+        pagingVolume = 100;
+        scroller = 0;
+        pxORper = "%";
+        sumahoflag = true;
+    }
     //1＝問題文
     //2＝第一選択肢
     //3＝第二選択肢
@@ -335,7 +355,7 @@ window.addEventListener("load", () => {
         ratecorrect = 0;
         let randomhyouka = Math.floor(Math.random() * 4);
         scoreComment = "";
-        ratecorrect = seikaisuu / kotaetakazu;
+        ratecorrect = Gamestate.numCA / Gamestate.wq;
         ratecorrect = Math.round(ratecorrect * 100) / 100;
         if (ratecorrect > 0.74 && ratecorrect < 1) {
             scoreComment = hyoukalist.h_heibon[randomhyouka];
@@ -362,7 +382,7 @@ window.addEventListener("load", () => {
         Gamestate.rightnum = Erabu[whatMissionNum][3];
         selectans1.innerText = Erabu[whatMissionNum][1];
         selectans2.innerText = Erabu[whatMissionNum][2];
-        missionnumberElement.innerText = "第" + (kotaetakazu + 1) + "問";
+        missionnumberElement.innerText = "第" + (Gamestate.wq + 1) + "問";
         //問題格納
     }
     function modechange() {
@@ -382,42 +402,48 @@ window.addEventListener("load", () => {
             alert("モード「無敗の聖剣」");
         }
     }
-    function logoandend() {
-        alert("回答を中断します");
-        DelayFadeout(1, hyouka);
+    function end(state) {
+        switch (state) {
+            case "final":
+                DelayFadeout(1, gameobrn, clearop, hyouka);
+                break;
+            case "mid":
+                alert("回答を中断します");
+                DelayFadeout(1, hyouka);
+                break;
+            default:
+                throw new Error("不正なエンドです");
+        }
         Fadeout(gamecorner);
         Fadeout(backbtn);
-        totalsyutudai = totalsyutudai + kotaetakazu;
-        kotaetakazu = 0;
         while (scorenode.firstChild) {
             scorenode.removeChild(scorenode.firstChild);
         }
-        totalsei = totalsei + seikaisuu;
-        seikaisuu = 0;
-        totalhusei = totalhusei + huseikaisuu;
-        huseikaisuu = 0;
-        totalratec = totalsei / totalsyutudai;
+        let startspan = document.createElement("span");
+        startspan.innerText = "1~10問";
+        scorenode.appendChild(startspan);
+        totalratec = totalok / totalQuestions;
         totalratec = Math.round(totalratec * 100);
         navmessage.style.display = "inline";
-        DelayFadein(2, startdiv);
-        DelayFlexin(2, optiondiv);
-        alscore1.innerText = "トータル正解：" + totalsei + "/" + totalsyutudai;
-        alscore2.innerText = "正解率：" + totalratec + "%";
+        DelayFadein(2, startdiv, optiondiv);
     }
     ; //正解率出力+ホーム遷移
+    hyouka.onclick = () => {
+        if (gameobrn.paused) {
+            end("final");
+        }
+    };
     backbtn.onclick = () => {
         if (Gamestate.mode === 3) {
             alert("引き返すことは出来ないようだ......");
         }
         else {
-            let logoconfu = window.confirm("回答を中断しますか？"); //ホームorトライ選択
-            if (logoconfu) {
-                logoandend();
+            // let logoconfu = ;//ホームorトライ選択
+            if (window.confirm("回答を中断しますか？")) {
+                end("mid");
             }
         }
     }; //Logoリスタート
-    const heximg = document.getElementById("heximg");
-    const greenhex = document.getElementById("greenhex");
     gamestartbtn.addEventListener("mouseenter", () => {
         DelayFadein(0.5, heximg, greenhex);
     });
@@ -430,9 +456,10 @@ window.addEventListener("load", () => {
     const gameobrn = document.getElementById("gameobrn"); //デレレーンゲームオーバー
     const ngbrn = document.getElementById("ngbrn"); //バーン！！動画
     const audbn = document.getElementById("audbn"); //バーン！！音声
-    const seigohantei = function () {
+    function seigohantei() {
+        Gamestate.wq++;
+        Fadein(clearop);
         if (Gamestate.rightnum == Gamestate.selectnum) { //正解
-            Fadein(clearop);
             Fadein(okimg); //500
             if (!okaud.paused) {
                 okaud.pause();
@@ -443,21 +470,17 @@ window.addEventListener("load", () => {
             railchild.classList.add("ok");
             railchild.innerText = "正解！！";
             scorenode.appendChild(railchild);
-            seikaisuu++;
-            kotaetakazu++;
+            Gamestate.numCA++;
         }
         else { //不正解
             //無敗モード時gameover挿入
+            Gamestate.numICA++;
             if (Gamestate.mode === 3) {
-                Fadein(clearop);
                 DelayFadein(1, gameobrn);
                 gameobrn.play();
                 Gamestate.mistaken = true;
-                huseikaisuu = huseikaisuu + 1;
-                kotaetakazu = kotaetakazu + 1;
             }
             else {
-                Fadein(clearop);
                 DelayFadein(0.3, ngbrn);
                 if (!ngbrn.paused) {
                     ngbrn.pause();
@@ -473,11 +496,9 @@ window.addEventListener("load", () => {
                 railchild.classList.add("ng");
                 railchild.innerText = "不正解....";
                 scorenode.appendChild(railchild);
-                huseikaisuu = huseikaisuu + 1;
-                kotaetakazu = kotaetakazu + 1;
             }
         }
-    };
+    }
     gamestartbtn.addEventListener("click", () => {
         DelayFadeout(0.5, optiondiv, startdiv);
         Fadeout(navmessage);
@@ -487,83 +508,52 @@ window.addEventListener("load", () => {
         Fadein(gamecorner);
         //問題設定宣言
     });
-    hyouka.onclick = () => {
-        if (gameobrn.paused) {
-            DelayFadeout(1, gameobrn, clearop, hyouka);
-            Fadeout(gamecorner);
-            Fadeout(backbtn);
-            totalsyutudai = totalsyutudai + kotaetakazu;
-            kotaetakazu = 0;
-            scorenode.innerHTML = "";
-            totalsei = totalsei + seikaisuu;
-            seikaisuu = 0;
-            totalhusei = totalhusei + huseikaisuu;
-            huseikaisuu = 0;
-            totalratec = totalsei / totalsyutudai;
-            totalratec = Math.round(totalratec * 100);
-            navmessage.style.display = "inline";
-            DelayFadein(2, startdiv);
-            DelayFlexin(2, optiondiv);
-            alscore1.innerText = "トータル正解：" + totalsei + "/" + totalsyutudai;
-            alscore2.innerText = "正解率：" + totalratec + "%";
-        }
-    };
-    selectans1.onclick = function () {
-        if (clickflag) {
-            clickflag = false;
-            Gamestate.selectnum = 1;
-            Fadeout(gamecorner);
-            seigohantei();
-            if (Gamestate.mode === 3 && Gamestate.mistaken) {
-            }
-            else {
-                DelayFadeout(1, okimg, ngbrn, clearop);
-            }
-            resetsur();
-            switch (Gamestate.mode) {
-                case 1:
-                    if (kotaetakazu > 49) {
-                        if (unlimitedcontinue) {
-                            let logoconfu2 = window.confirm("まだ挑戦しますか？");
-                            if (logoconfu2) {
-                                unlimitedcontinue = false;
-                            }
-                            else {
-                                hyoukafase();
-                            }
-                        }
-                        else {
-                            if (kotaetakazu > 99) {
-                                alert("100問回答達成です！おめでとうございます！！");
-                                hyoukafase();
-                            }
-                        }
-                    }
-                    break;
-                case 2:
-                    if (kotaetakazu > 19) {
-                        hyoukafase();
-                    }
-                    break;
-                case 3:
-                    if (Gamestate.mistaken) {
-                        //3秒待機
-                        setTimeout(() => {
-                            hyoukafase();
-                        }, 7000);
-                    }
-            }
-            Fadein(gamecorner);
+    function scoreUpdate() {
+        totalQuestions = Gamestate.wq;
+        totalok = totalok + Gamestate.numCA;
+        totalng = totalng + Gamestate.numICA;
+        totalratec = totalok / totalQuestions;
+        totalratec = Math.round(totalratec * 100);
+        alscore1.innerText = "トータル正解：" + totalok + "/" + totalQuestions;
+        alscore2.innerText = "正解率：" + totalratec + "%";
+    }
+    function changeRails() {
+        scorenode.classList.remove("nowrails");
+        const newrails = document.createElement("ul");
+        newrails.classList.add("nowrails");
+        const newrailtitle = document.createElement("span");
+        newrailtitle.innerText = railPagesCount + "問～" + (railPagesCount + 9) + "問";
+        railPagesCount += 10;
+        newrails.appendChild(newrailtitle);
+        railPages.appendChild(newrails);
+        scorenode = document.getElementsByClassName("nowrails")[0];
+    }
+    function scoreScroll(direc) {
+        const nowPages = railPages.getElementsByTagName("ul");
+        if (direc === "right") {
+            scroller -= pagingVolume;
         }
         else {
-            return false;
+            scroller += pagingVolume;
         }
-        clickflag = true;
+        for (let i = 0; i < nowPages.length; i++) {
+            nowPages[i].style.transform = "translateX(" + scroller + pxORper + ")";
+        }
+    }
+    document.getElementById("moveright").onclick = () => {
+        if (canScroll) {
+            scoreScroll("right");
+        }
     };
-    selectans2.onclick = function () {
+    document.getElementById("moveleft").onclick = () => {
+        if (canScroll) {
+            scoreScroll("left");
+        }
+    };
+    function tailSelect(tailnum) {
         if (clickflag) {
             clickflag = false;
-            Gamestate.selectnum = 2; //2番を選びました
+            Gamestate.selectnum = tailnum; //2番を選びました
             Fadeout(gamecorner); //500
             seigohantei(); //正誤判定
             if (Gamestate.mode === 3 && Gamestate.mistaken) {
@@ -574,9 +564,9 @@ window.addEventListener("load", () => {
             resetsur();
             switch (Gamestate.mode) {
                 case 1:
-                    if (kotaetakazu > 49) {
+                    if (Gamestate.wq > 49) {
                         if (unlimitedcontinue) {
-                            var logoconfu2 = window.confirm("まだ挑戦しますか？");
+                            let logoconfu2 = window.confirm("まだ挑戦しますか？");
                             if (logoconfu2) {
                                 unlimitedcontinue = false;
                             }
@@ -585,7 +575,7 @@ window.addEventListener("load", () => {
                             }
                         }
                         else {
-                            if (kotaetakazu > 99) {
+                            if (Gamestate.wq > 99) {
                                 alert("100問回答達成です！おめでとうございます！！");
                                 hyoukafase();
                             }
@@ -593,7 +583,7 @@ window.addEventListener("load", () => {
                     }
                     break;
                 case 2:
-                    if (kotaetakazu > 19) {
+                    if (Gamestate.wq > 19) {
                         hyoukafase();
                     }
                     break;
@@ -605,11 +595,23 @@ window.addEventListener("load", () => {
                         }, 7000);
                     }
             }
+            if (Gamestate.wq % 10 === 0) {
+                changeRails();
+                scoreScroll("right");
+                canScroll = true;
+            }
+            scoreUpdate();
             DelayFadein(1, gamecorner);
         }
         else {
             return false;
         }
         clickflag = true;
+    }
+    selectans1.onclick = function () {
+        tailSelect(1);
+    };
+    selectans2.onclick = function () {
+        tailSelect(2);
     };
 });

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <!-- CSS&WebFont -->
     <link href="game.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Sawarabi+Mincho&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 
@@ -27,75 +29,88 @@
     <meta property="og:site_name" content="漢検二級読みクイズ">
     <meta name="twitter:card" content="summary">
     <title>漢検二級読みクイズ・エレデシ</title>
-  
-  <!-- <script data-ad-client="ca-pub-4028808490101437" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
-  
-  </head>
-  <body>
-    <div id="wrap">
-    <header id="gamename">
-      <div id="gamenametrue"><h1>Elegant <br class="mobileonly"><span id="decisionenter">Decision</span></h1></div>
-    </header>
-    <div id="allscore">
-      <span id="alsc1">トータル正解：X/Y</span>
-      <span id="alsc2">正答率：X</span>
-    </div>  
 
-    <main role="main">
-      <p id="top-message">
-        <i class="far fa-comment-dots"></i>
-        <span id="back">もどる</span>
-        <span id="navigate">モードを選択し、STARTボタンを押してください。<br><span style="color: red;">※音が出ます！周囲に注意してください！</span></span>
-      </p>
-      <div class="bplaydisp" id="option">
-        <h3><i class="fas fa-chevron-right"></i>モード</h3><br>
-        <input type="radio" name="limitchange" value="unlimited" id="cbunli" class="optioncb" checked="checked">
-        <label for="cbunli" class="modelabel">アンリミテッド</label>
-        <input type="radio" name="limitchange" value="twlimit" id="cbtwli" class="optioncb">
-        <label for="cbtwli" class="modelabel">２０リミット</label>
-        <input type="radio" name="limitchange" value="undefeated" id="cbunde" class="optioncb">
-        <label for="cbunde" class="modelabel">勝ち抜き</label>
-      </div>
-      <div class="bplaydisp" id="startdiv">
-        <button id="gamestartbtn">Game&nbsp;Start</button>
-        <img src="https://lhaidelabo.com/wp-content/uploads/2020/05/hexsagon-1.png" id="heximg">
-        <img src="https://lhaidelabo.com/wp-content/uploads/2020/05/greenhex2.png" id="greenhex">
-      </div>
-      
-      <div id="Score">
-        <ul id="scorerail"></ul>
-      </div>
-      <div class="game-corner" id="game-corner">
-        <span id="mission-number">第0問</span>
-        <div id="g-mission">
-          <h2 id="missiontitle"></h2>
+    <!-- <script data-ad-client="ca-pub-4028808490101437" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="gamename">
+            <div id="gamenametrue">
+                <h1>Elegant <br class="mobileonly"><span id="decisionenter">Decision</span></h1>
+            </div>
+        </header>
+        <div id="allscore">
+            <span id="alsc1">トータル正解：X/Y</span>
+            <span id="alsc2">正答率：X</span>
         </div>
-        <div id="g-answer">
-          <div class="selecta" id="selectans-1"></div>
-          <div class="selecta" id="selectans-2"></div>
+        <main role="main">
+            <span id="back">もどる</span>
+            <p id="top-message">
+
+                <span id="navigate"><i class="far fa-comment-dots"></i>モードを選択し、STARTボタンを押してください。<br>
+                <span style="color:red;">※音が出ます！周囲に注意してください！</span></span>
+            </p>
+            <div class="bplaydisp" id="option">
+                <h3><i class="fas fa-chevron-right"></i>モード</h3><br>
+                <input type="radio" name="limitchange" value="unlimited" id="cbunli" class="optioncb" checked="checked">
+                <label for="cbunli" class="modelabel">アンリミテッド</label>
+                <input type="radio" name="limitchange" value="twlimit" id="cbtwli" class="optioncb">
+                <label for="cbtwli" class="modelabel">２０リミット</label>
+                <input type="radio" name="limitchange" value="undefeated" id="cbunde" class="optioncb">
+                <label for="cbunde" class="modelabel">勝ち抜き</label>
+            </div>
+            <div class="bplaydisp" id="startdiv">
+                <button id="gamestartbtn">Game&nbsp;Start</button>
+                <img src="./source/hexsagon-1.png" id="heximg">
+                <img src="./source/greenhex2.png" id="greenhex">
+            </div>
+
+            <div id="Score">
+                <ul id="railPages">
+                    <i class="fas fa-chevron-left" id="moveleft"></i>
+                    <i class="fas fa-chevron-right" id="moveright"></i>
+                    <ul id="scorerail" class="nowrails">
+                        <span>1~10問</span>
+                    </ul>
+                </ul>
+            </div>
+            <div class="game-corner" id="game-corner">
+                <span id="mission-number">第0問</span>
+                <div id="g-mission">
+                    <h2 id="missiontitle"></h2>
+                </div>
+                <div id="g-answer">
+                    <div class="selecta" id="selectans-1"></div>
+                    <div class="selecta" id="selectans-2"></div>
+                </div>
+            </div>
+
+            <div class="clearop" id="clearop">
+                <img src="./source/OK.png" id="okimg">
+                <audio src="./source/OK.mp3" id="okaud"></audio>
+                <video src="./source/burnmini.mp4" id="ngbrn"></video>
+                <video src="./source/gameover.mp4" id="gameobrn"></video>
+                <audio src="./source/barn.wav" id="audbn"></audio>
+            </div>
+            <div id="hyouka">
+                <span id="hyoukaspa">達人ですね</span>
+            </div>
+
+
+        </main>
+        <footer>
+            <small>
+                <img src="https://willwebgame.com/favicon.png">
+                <span>&copy;WillWebGame&nbsp;2021</span>
+            </small>
+        </footer>
+        <div id="adsdiv">
+
         </div>
-      </div>
-      
-      <div class="clearop" id="clearop">
-        <img src="https://lhaidelabo.com/wp-content/uploads/2020/05/OK.png" id="okimg">
-        <audio src="https://lhaidelabo.com/wp-content/uploads/2020/05/OK.mp3" id="okaud"></audio>
-        <video src="https://lhaidelabo.com/wp-content/uploads/2020/05/burnmini.mp4" id="ngbrn"></video>
-        <video src="https://lhaidelabo.com/wp-content/uploads/2020/06/gameover.mp4" id="gameobrn"></video>
-        <audio src="https://lhaidelabo.com/wp-content/uploads/2020/05/barn.wav" id="audbn"></audio>
-      </div>
-      <div id="hyouka">
-        <span id="hyoukaspa">達人ですね</span>
-      </div>
-      
-      
-    </main>
-    <footer>
-      <small>&copy;WillWebGame&nbsp;2021</small>
-    </footer>
-    <div id="adsdiv">
-        
-    </div>
     </div>
     <script src="altgame.js"></script>
-  </body>
+</body>
+
 </html>

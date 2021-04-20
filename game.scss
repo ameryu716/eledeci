@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-body{
+body {
   position: absolute;
   width: 100%;
   height: 650px;
@@ -31,7 +31,7 @@ body{
   h1 {
     width: auto;
     margin-bottom: 0;
-    font-family: 'Lora', serif;
+    font-family: "Lora", serif;
     color: dimgray;
     padding-left: 10px;
     padding-bottom: 3px;
@@ -45,12 +45,18 @@ body{
   padding: 40px;
   font-family: cursive;
   top: 0;
+  display: none;
 }
 
 #top-message {
   margin: 0;
   width: 98%;
   white-space: nowrap;
+  // adder
+  position: absolute;
+  top: 34%;
+  left: 0;
+  text-align: center;
 }
 #back {
   display: none;
@@ -72,23 +78,27 @@ body{
 
 #option {
   position: absolute;
-  right: 11%;
+  // right: 11%;
+  right: 5%;
   top: 20%;
+  h3 {
+    color: lightgreen;
+    font-size: 24px;
+  }
 }
 #startdiv {
   height: 62vh;
 }
 
-
-input[type=radio]{
+input[type="radio"] {
   display: none;
-  &:checked + label{
+  &:checked + label {
     transition: 1s;
     background-color: #ffffff;
     color: darkturquoise;
   }
 }
-.modelabel{
+.modelabel {
   font-size: 30px;
   margin: 10px;
   border: solid 1px green;
@@ -102,11 +112,10 @@ input[type=radio]{
   color: aliceblue;
 }
 
-
 #gamestartbtn {
   position: absolute;
-  top: 45%;
-  right: 42%;
+  top: 50%;
+  right: 40%;
   font-size: 64px;
   background-color: transparent;
   color: coral;
@@ -121,7 +130,6 @@ input[type=radio]{
   }
 }
 
-
 #heximg {
   display: none;
   position: absolute;
@@ -135,7 +143,7 @@ input[type=radio]{
   width: auto;
 }
 
-#greenhex{
+#greenhex {
   display: none;
   position: absolute;
   top: 7%;
@@ -148,21 +156,37 @@ input[type=radio]{
   width: auto;
 }
 @keyframes hexim {
-  0%{transform:rotateZ(0deg);}
-  50%{transform: rotateZ(180deg);}
-  100%{transform:rotateZ(360deg);}
+  0% {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(180deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
 }
 @keyframes hexim2 {
-  0%{transform:rotateZ(0deg);}
-  50%{transform: rotateZ(180deg);}
-  100%{transform:rotateZ(360deg);}
+  0% {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(180deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
 }
 
 #Score {
   position: absolute;
-  top: 125px;
-  width: 100px;
-  height: 500px;
+  top: 145px;
+  left: 1%;
+  width: 200px;
+  height: 430px;
+}
+details {
+  padding: 10px;
 }
 #pcscore {
   display: block;
@@ -171,36 +195,79 @@ input[type=radio]{
   display: none;
 }
 
+#railPages{
+	position: relative;
+	display: flex;
+    overflow: hidden;
+    padding: 0;
+	height: inherit;
+	width: inherit;
+	margin: 0;
+	border: solid 2px coral;
+    border-radius: 10px;
+	span {
+		font-size: 24px;
+		display: block;
+		color: coral;
+		border-bottom: solid 2px coral;
+		position: absolute;
+		top: 5px;
+		width: 127%;
+		left: -40px;
+		text-align: center;
+	}
+	i {
+		position: absolute;
+		top: 46%;
+		font-size: 28px;
+		cursor: pointer;
+		z-index: 1;
+		color: crimson;
+	}
+	ul {
+		min-width: 120px;
+		transform: translateX(50px);
+		padding: 55px 10px 10px;
+		height: 100%;
+		width: 120px;
+		list-style: decimal;
+		margin-right: 50px;
+		transition: 0.5s;
+	}
+	li {
+		margin: 0 4px;
+		height: auto;
+		font-size: 24px;
+		white-space: nowrap;
+		&.ok {
+		color: red;
+		}
+		&.ng {
+		color: blue;
+		}
+	}
+}
+
+#moveright {
+	right: 0;
+}
+#moveleft {
+	left: 0;
+}
+
 #scorerail {
-  position: absolute;
-  z-index: 1;
-  padding: 10px;
-  height: 75vh;
-  width: 150px;
-  list-style: decimal;
-  li {
-    margin: 0 4px;
-    height: auto;
-    font-size: 24px;
-    &.ok {
-      color: red;
-    }
-    &.ng {
-      color: blue;
-    }
-  }
 }
 
 #hyouka {
   display: none;
   width: 99%;
   height: 800px;
-  background-color: rgba(255,255,255,0.8);
+  background-color: rgba(255, 255, 255, 0.8);
   position: fixed;
   z-index: 10;
   cursor: pointer;
 }
-#hyoukaspa{
+#hyoukaspa {
   position: relative;
   display: block;
   text-align: center;
@@ -208,14 +275,6 @@ input[type=radio]{
   font-size: 80px;
   font-family: serif;
 }
-
-
-
-
-
-
-
-
 
 .game-corner {
   height: 80vh;
@@ -226,7 +285,7 @@ input[type=radio]{
   top: 16%;
   left: 16.5%;
   z-index: 1;
-  font-family: 'Noto Serif JP', serif;
+  font-family: "Noto Serif JP", serif;
 }
 #mission-number {
   font-size: 24px;
@@ -278,24 +337,24 @@ input[type=radio]{
   border-radius: 10px;
   &:hover {
     box-shadow: none;
-    transform: translate(3px,7px);
+    transform: translate(3px, 7px);
     transition: 0.5s;
   }
 }
 #selectans-1 {
   border: solid 3px red;
-  box-shadow: 4px 7px 3px rgba(255,0,0,0.7);
+  box-shadow: 4px 7px 3px rgba(255, 0, 0, 0.7);
   margin: 5px 10px;
   &:not(:hover) {
-    box-shadow: 4px 7px 3px rgba(255,0,0,0.3);
+    box-shadow: 4px 7px 3px rgba(255, 0, 0, 0.3);
   }
 }
 #selectans-2 {
   border: solid 3px blue;
-  box-shadow: 4px 7px 3px rgba(0,0,255,0.7);
+  box-shadow: 4px 7px 3px rgba(0, 0, 255, 0.7);
   margin: 5px 10px;
   &:not(:hover) {
-    box-shadow: 4px 7px 3px rgba(0,0,255,0.3);
+    box-shadow: 4px 7px 3px rgba(0, 0, 255, 0.3);
   }
 }
 
@@ -308,23 +367,38 @@ input[type=radio]{
 }
 footer {
   text-align: right;
+  img{
+    width: 50px;
+  }
+  small{
+    display: flex;
+    font-size: 18px;
+    color: lightgreen;
+    font-weight: bold;
+    position: absolute;
+    top: 2%;
+    right: 1%;
+    span{
+      padding-top: 12px;
+    }
+  }
 }
 
-#okimg{
+#okimg {
   display: none;
   position: absolute;
   z-index: 2;
   bottom: 140px;
   left: 450px;
 }
-#ngbrn{
+#ngbrn {
   display: none;
   position: absolute;
   z-index: 2;
   bottom: 150px;
   left: 460px;
 }
-#gameobrn{
+#gameobrn {
   display: none;
   position: absolute;
   z-index: 6;
@@ -339,7 +413,7 @@ footer {
   display: none;
 }
 
-@media screen and (max-width:830px) {
+@media screen and (max-width: 830px) {
   /*画面サイズが600px以下の場合に適用 */
   .mobileonly {
     display: block;
@@ -373,7 +447,7 @@ footer {
   }
   main {
     padding: 10px 0;
-    border-top:rgba(0,255,30,0.2) solid 1px;
+    border-top: rgba(0, 255, 30, 0.2) solid 1px;
     position: relative;
     height: 70vh;
   }
@@ -383,7 +457,7 @@ footer {
   #mobilescore {
     display: block;
   }
-  #gamename{
+  #gamename {
     height: auto;
     width: 42vw;
     position: relative;
@@ -442,6 +516,12 @@ footer {
     height: 50vh;
     width: 100%;
   }
+  #top-message {
+    position: relative;
+    top: unset;
+    left: unset;
+    text-align: left;
+  }
   #option {
     position: relative;
     right: 0;
@@ -481,7 +561,7 @@ footer {
     padding-bottom: 30px;
     position: absolute;
     margin: 0 2%;
-    top: 30%;
+    top: 40%;
     left: 0;
   }
   #mission-number {
@@ -494,7 +574,7 @@ footer {
     width: 85%;
     height: auto;
   }
-  #missiontitle{
+  #missiontitle {
     font-size: 10vw;
   }
   #g-answer {
@@ -505,45 +585,64 @@ footer {
     padding: 20px 0;
     font-size: 6vw;
   }
-  #selectans-1,#selectans-2 {
+  #selectans-1,
+  #selectans-2 {
     margin: 5px;
   }
   #Score {
     position: relative;
     top: auto;
-    width: 104vw;
+    left: 1%;
+    width: 94vw;
     height: 130px;
-    margin: 0 auto 10px;
-  }
-  #scorerail {
-    padding: 5px;
-    height: auto;
-    width: auto;
     margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    overflow: hidden;
-    li{
-      margin: 0 8px;
-      height: 22px;
-      font-size: 2.5vw;
+  }
+
+
+  #railPages{
+    span{
+      top: 3px;
+      width: 35%;
+      left: 5px;
+      font-size: 4vw;
+    }
+    ul {
+      min-width: 89%;
+      transform: translateX(5px);
+      padding: 35px 20px 5px;
+      height: auto;
+      width: auto;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      overflow: hidden;
+      li {
+        margin: 0 14px 0 8px;
+        height: 22px;
+        font-size: 3.6vw;
+      }
     }
   }
-  
+
+  #scorerail {
+    li {
+    }
+  }
+
   .clearop {
     top: 300px;
     left: 10%;
   }
-  #gameobrn{
+  #gameobrn {
     left: auto;
     bottom: auto;
     width: 300px;
   }
-  #hyouka{
+  #hyouka {
     top: 0;
     left: 0;
   }
-  #hyoukaspa{
+  #hyoukaspa {
     padding: 50vh 0;
     font-size: 30px;
     text-decoration: underline;
@@ -551,9 +650,20 @@ footer {
   footer {
     font-size: 3vw;
   }
+  footer {
+    img{
+      width: 40px;
+    }
+    small{
+      font-size: 16px;
+      span{
+        padding-top: 10px;
+      }
+    }
+  }
 }
 
-@media screen and (max-width:600px){
+@media screen and (max-width: 600px) {
   /* 600px以下 */
   main {
     height: 67vh;
@@ -567,7 +677,8 @@ footer {
   #adsdiv {
     width: 320px;
   }
-  #scorerail li{
+
+  #railPages li {
     height: 20px;
     font-size: 3vw;
   }
@@ -576,7 +687,7 @@ footer {
   }
   #gamestartbtn {
     font-size: 10vw;
-    margin-top: 50%;
+    margin-top: 45%;
   }
 }
 
@@ -589,13 +700,13 @@ footer {
     background-color: transparent;
     border: solid 2px mediumseagreen;
   }
-  input[type=radio]:checked + label {
+  input[type="radio"]:checked + label {
     background-color: #eee;
     color: lightseagreen;
     font-weight: bold;
   }
   #hyouka {
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255, 255, 255, 0.7);
     color: #222;
     font-weight: bold;
   }

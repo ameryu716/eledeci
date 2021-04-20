@@ -33,7 +33,7 @@ body {
 #gamenametrue h1 {
   width: auto;
   margin-bottom: 0;
-  font-family: 'Lora', serif;
+  font-family: "Lora", serif;
   color: dimgray;
   padding-left: 10px;
   padding-bottom: 3px;
@@ -46,12 +46,17 @@ body {
   padding: 40px;
   font-family: cursive;
   top: 0;
+  display: none;
 }
 
 #top-message {
   margin: 0;
   width: 98%;
   white-space: nowrap;
+  position: absolute;
+  top: 34%;
+  left: 0;
+  text-align: center;
 }
 
 #back {
@@ -75,18 +80,22 @@ body {
 
 #option {
   position: absolute;
-  right: 11%;
+  right: 5%;
   top: 20%;
+}
+#option h3 {
+  color: lightgreen;
+  font-size: 24px;
 }
 
 #startdiv {
   height: 62vh;
 }
 
-input[type=radio] {
+input[type="radio"] {
   display: none;
 }
-input[type=radio]:checked + label {
+input[type="radio"]:checked + label {
   transition: 1s;
   background-color: #ffffff;
   color: darkturquoise;
@@ -108,8 +117,8 @@ input[type=radio]:checked + label {
 
 #gamestartbtn {
   position: absolute;
-  top: 45%;
-  right: 42%;
+  top: 50%;
+  right: 40%;
   font-size: 64px;
   background-color: transparent;
   color: coral;
@@ -174,9 +183,14 @@ input[type=radio]:checked + label {
 }
 #Score {
   position: absolute;
-  top: 125px;
-  width: 100px;
-  height: 500px;
+  top: 145px;
+  left: 1%;
+  width: 200px;
+  height: 430px;
+}
+
+details {
+  padding: 10px;
 }
 
 #pcscore {
@@ -187,24 +201,65 @@ input[type=radio]:checked + label {
   display: none;
 }
 
-#scorerail {
-  position: absolute;
-  z-index: 1;
-  padding: 10px;
-  height: 75vh;
-  width: 150px;
-  list-style: decimal;
+#railPages {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  padding: 0;
+  height: inherit;
+  width: inherit;
+  margin: 0;
+  border: solid 2px coral;
+  border-radius: 10px;
 }
-#scorerail li {
+#railPages span {
+  font-size: 24px;
+  display: block;
+  color: coral;
+  border-bottom: solid 2px coral;
+  position: absolute;
+  top: 5px;
+  width: 127%;
+  left: -40px;
+  text-align: center;
+}
+#railPages i {
+  position: absolute;
+  top: 46%;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1;
+  color: crimson;
+}
+#railPages ul {
+  min-width: 120px;
+  transform: translateX(50px);
+  padding: 55px 10px 10px;
+  height: 100%;
+  width: 120px;
+  list-style: decimal;
+  margin-right: 50px;
+  transition: 0.5s;
+}
+#railPages li {
   margin: 0 4px;
   height: auto;
   font-size: 24px;
+  white-space: nowrap;
 }
-#scorerail li.ok {
+#railPages li.ok {
   color: red;
 }
-#scorerail li.ng {
+#railPages li.ng {
   color: blue;
+}
+
+#moveright {
+  right: 0;
+}
+
+#moveleft {
+  left: 0;
 }
 
 #hyouka {
@@ -235,7 +290,7 @@ input[type=radio]:checked + label {
   top: 16%;
   left: 16.5%;
   z-index: 1;
-  font-family: 'Noto Serif JP', serif;
+  font-family: "Noto Serif JP", serif;
 }
 
 #mission-number {
@@ -324,6 +379,21 @@ input[type=radio]:checked + label {
 
 footer {
   text-align: right;
+}
+footer img {
+  width: 50px;
+}
+footer small {
+  display: flex;
+  font-size: 18px;
+  color: lightgreen;
+  font-weight: bold;
+  position: absolute;
+  top: 2%;
+  right: 1%;
+}
+footer small span {
+  padding-top: 12px;
 }
 
 #okimg {
@@ -480,6 +550,13 @@ footer {
     width: 100%;
   }
 
+  #top-message {
+    position: relative;
+    top: unset;
+    left: unset;
+    text-align: left;
+  }
+
   #option {
     position: relative;
     right: 0;
@@ -523,7 +600,7 @@ footer {
     padding-bottom: 30px;
     position: absolute;
     margin: 0 2%;
-    top: 30%;
+    top: 40%;
     left: 0;
   }
 
@@ -553,20 +630,30 @@ footer {
     font-size: 6vw;
   }
 
-  #selectans-1, #selectans-2 {
+  #selectans-1,
+  #selectans-2 {
     margin: 5px;
   }
 
   #Score {
     position: relative;
     top: auto;
-    width: 104vw;
+    left: 1%;
+    width: 94vw;
     height: 130px;
-    margin: 0 auto 10px;
+    margin: 0;
   }
 
-  #scorerail {
-    padding: 5px;
+  #railPages span {
+    top: 3px;
+    width: 35%;
+    left: 5px;
+    font-size: 4vw;
+  }
+  #railPages ul {
+    min-width: 89%;
+    transform: translateX(5px);
+    padding: 35px 20px 5px;
     height: auto;
     width: auto;
     margin: 0;
@@ -574,10 +661,10 @@ footer {
     flex-wrap: wrap;
     overflow: hidden;
   }
-  #scorerail li {
-    margin: 0 8px;
+  #railPages ul li {
+    margin: 0 14px 0 8px;
     height: 22px;
-    font-size: 2.5vw;
+    font-size: 3.6vw;
   }
 
   .clearop {
@@ -605,6 +692,16 @@ footer {
   footer {
     font-size: 3vw;
   }
+
+  footer img {
+    width: 40px;
+  }
+  footer small {
+    font-size: 16px;
+  }
+  footer small span {
+    padding-top: 10px;
+  }
 }
 @media screen and (max-width: 600px) {
   /* 600px以下 */
@@ -624,7 +721,7 @@ footer {
     width: 320px;
   }
 
-  #scorerail li {
+  #railPages li {
     height: 20px;
     font-size: 3vw;
   }
@@ -635,7 +732,7 @@ footer {
 
   #gamestartbtn {
     font-size: 10vw;
-    margin-top: 50%;
+    margin-top: 45%;
   }
 }
 @media (prefers-color-scheme: dark) {
@@ -649,7 +746,7 @@ footer {
     border: solid 2px mediumseagreen;
   }
 
-  input[type=radio]:checked + label {
+  input[type="radio"]:checked + label {
     background-color: #eee;
     color: lightseagreen;
     font-weight: bold;
